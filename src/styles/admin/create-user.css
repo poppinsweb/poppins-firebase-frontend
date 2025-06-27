@@ -1,0 +1,72 @@
+/* MOBILE SIZE */
+.registration-container {
+  margin: 0 auto;
+  padding: 90px 10px;
+  background-image: url("../images/paraguas.png");
+  background-size: contain;
+  height: 850px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .register-container {
+  margin-top: -150px;
+  height: 850px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+} */
+
+#btn-register {
+  margin-top: 20px;
+}
+
+/* MEDIUM SCREEN */
+@media (min-width: 800px) {
+  .registration-container {
+    padding: 50px;
+    padding-top: 150px;
+    min-height: 1054px;
+  }
+}
+
+/* LARGE SCREEN */
+@media (min-width: 1200px) {
+  .register-card {
+    background: transparent;
+    border: 1px solid #444343;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px #414040;
+    padding: 50px 100px;
+    border-radius: 10px;
+    margin: 0 auto;
+  }
+
+  .title-register {
+    font-size: 2.8rem;
+    color: #4a0a6a;
+    /* margin-top: 100px; */
+  }
+
+  .form-control {
+    margin: 0 auto;
+    width: 400px;
+    font-size: 20px;
+  }
+
+  .register-card label {
+    font-size: 25px;
+  }
+
+  .form-select {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+}
+
+/* LARGER SCREEN */
+@media (min-width: 1500px) {
+}

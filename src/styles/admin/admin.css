@@ -1,0 +1,47 @@
+/* MOBILE SIZE */
+.main-container {
+  background-color:#a4bda26d;
+  display: flex;
+  flex-direction: column; 
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-panel{
+  margin-top: 30px;
+}
+
+.select-container {
+  padding: 15px;
+  /* background-color: #9984af; */
+  width: max-content;
+}
+
+.filter-btn {
+  margin: 2rem;
+}
+
+.render-data {
+  text-align: left;
+  padding: 15px;
+  width: max-content;
+  margin: 0;
+}
+
+/* MEDIUM SCREEN */
+@media (min-width: 800px) {
+.main-container {
+  flex-direction: row;
+}
+}
+
+/* LARGE SCREEN */
+@media (min-width: 1200px) {
+.main-container {
+  flex-direction: column;
+}}
+
+/* LARGER SCREEN */
+@media (min-width: 1500px) {
+}

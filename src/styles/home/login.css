@@ -1,0 +1,73 @@
+/* MOBILE SIZE */
+.page-container {
+  margin: 0 auto;
+  padding: 90px 10px;
+  background-image: url("../images/fondo-nubes-blancas-lila-complete.jpg");
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 95vh;
+}
+
+.login-card {
+  width: 80%;
+  background: transparent;
+  border: 1px solid #444343;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 10px #414040;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+label {
+  font-size: 1.8rem;
+}
+
+/* MEDIUM SCREEN */
+@media (min-width: 768px) {
+  .page-container {
+    padding-top: 150px;
+    min-height: 1054px;
+  }
+
+  .login-card {
+    width: 60%;
+  }
+}
+
+/* LARGE SCREEN */
+@media (min-width: 992px) {
+  .page-container {
+    background-size: contain;
+    min-height: 900px;
+    padding: 0;
+  }
+
+  .login-card {
+    width: 40%;
+  }
+
+  .title-login {
+    font-size: 2.8rem;
+    color: #4a0a6a;
+    margin-top: 100px;
+  }
+
+  .login-container {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .btn-login {
+    margin-top: 50px;
+  }
+}
+
+/* LARGER SCREEN */
+@media (min-width: 1200px) {
+  .login-card {
+    /* width: 30%; */
+    margin-top: 100px;
+  }
+}

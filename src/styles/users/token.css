@@ -1,0 +1,213 @@
+/* MOBILE SIZE */
+.token-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../images/cloud-stars2.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  min-height: 1100px;
+  width: auto;
+  background-color: #6971a1;
+  padding: 50px;
+}
+
+.navitoken-main-container {
+  margin-top: 20px;
+}
+
+.infotoken-main-container,
+.navitoken-main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-info-text {
+  font-size: 10px;
+  padding: 0 35px;
+  text-align: justify;
+  background-color: #bec2d355;
+}
+
+.logo-token {
+  height: 330px;
+  margin: 4rem 0;
+}
+
+.box-tokens-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  width: auto;
+  background-color: #cbc6dd;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px 0px #000000bf;
+}
+
+.token-card {
+  display: flex;
+  justify-content: center;
+}
+
+/* .radio-token-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 15px;
+} */
+
+.btn-add {
+  margin: 1.5rem;
+}
+
+.btn-token-navigation,
+.btn-token-info {
+  color: #fff;
+  /* background-color: #891883a2; */
+  background-color: #543c80;
+  border: #198754;
+  border-radius: 10px;
+  width: 300px;
+  height: 50px;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.75);
+  font-size: 24px;
+}
+
+.btn-token-info:hover {
+  background-color: #cbc6dd;
+  color: #000;
+}
+
+.btn-token-navigation:disabled {
+  background-color: #6e6d6d;
+  color: #fff;
+}
+
+/* MEDIUM SCREEN */
+@media (min-width: 800px) {
+  .logo-token {
+    margin: 2rem 0;
+  }
+
+  .btn-token-navigation,
+  .btn-token-info {
+    font-size: 20px;
+    width: 250px;
+    height: 70px;
+  }
+
+  .btn-info-text {
+    font-size: 15px;
+  }
+
+  .navitoken-main-container {
+    margin-top: 0;
+  }
+
+  .box-tokens-container {
+    width: auto;
+    margin: 0 10px;
+  }
+
+  .token-lable {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .centered-title {
+    display: block;
+    text-align: center;
+  }
+}
+
+/* LARGE SCREEN */
+@media (min-width: 1200px) {
+  .code-title {
+    font-size: 1.5rem;
+    margin-top: 30px;
+  }
+
+  .radio-token-container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 0 80px;
+  }
+
+  input.radio-token {
+    margin-right: 10px;
+  }
+
+  .btn-token-container {
+    display: flex;
+    gap: 50px;
+    margin: 20px;
+    padding: 0px 50px;
+  }
+
+  .logo-token {
+    height: 400px;
+    margin-top: 0;
+  }
+
+  .box-tokens-container {
+    width: 800px;
+  }
+
+  label.token-label {
+    font-size: 1.1rem;
+  }
+
+  .btn-token-info {
+    font-size: 20px;
+    width: 350px;
+    height: 100px;
+  }
+
+  .btn-token {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .navitoken-main-container {
+    margin-top: 0;
+    margin-left: 50px;
+  }
+
+  .btn-info-text {
+    font-size: 1.5rem;
+    padding: 40px 150px;
+  }
+
+  .btn-info-container-card {
+    justify-content: center;
+    margin: 20px;
+    padding: 0px 250px;
+  }
+
+  .btn-info-text-card {
+    font-size: 1.8rem;
+    margin: 0px;
+    text-align: justify;
+    background-color: #bec2d392;
+  }
+
+  .custom-table {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .num {
+    width: 80px;
+  }
+}
+
+/* LARGER SCREEN */
+@media (min-width: 1500px) {
+}

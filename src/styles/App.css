@@ -1,0 +1,34 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.btn-color {
+  background-color: #543c80;
+  border-radius: 20px;
+  border: #198754;
+  width: 160px;
+  height: 45px;
+  color: #fff;  
+}   
+
+/*pendiente la seleccion del color para el hover de los botones*/
+.btn-color:hover {
+  background: #198754;
+  color: #ffff;
+  cursor: url(https://cur.cursors-4u.net/games/gam-4/gam327.cur), auto !important; 
+}
+
+.btn:hover {
+  cursor: url(https://cur.cursors-4u.net/games/gam-4/gam327.cur), auto !important; 
+}
+
+.nav-link:hover {
+  cursor: url(https://cur.cursors-4u.net/games/gam-4/gam327.cur), auto !important; 
+}
+
+h1, h2, h3 {
+  color: #543c80;
+}
+
+

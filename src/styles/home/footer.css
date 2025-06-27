@@ -1,0 +1,100 @@
+/* MOBILE SIZE
+.footer-container {
+  background-color: #cbc6dd;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.footer-links a {
+  color: #565555;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+}
+
+.footer-links a:hover {
+  color: #e857f5;
+  font-size: 20px;
+  cursor: url(https://cur.cursors-4u.net/others/oth-8/oth737.cur), auto !important; 
+
+}
+
+.social{
+  margin: 20px 20px;
+  font-size: 25px;
+  color: #565555;
+}
+
+.social:hover {
+  color: #e857f5;
+  font-size: 30px;
+  cursor: url(https://cur.cursors-4u.net/others/oth-8/oth737.cur), auto !important; 
+
+} */
+
+/* MEDIUM SCREEN 1024x800
+@media (min-width: 992px) {
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+  }
+
+  .footer-links a {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .footer-links a:hover {
+    font-size: 20px;
+  }
+
+  .social{
+    font-size: 30px;
+  }
+  
+  .social:hover {
+    font-size: 33px;
+  }
+}
+
+.privacity-container {
+  padding: 50px 350px;
+}
+
+.privacity-container ol li {
+  font-size: 22px;
+  text-align: left;
+  padding-top: 20px;
+}
+
+.privacity-container ol li::marker {
+  font-weight: bold;
+}
+
+.privacity-container ul li {
+  list-style-type: disc;
+}
+
+.actualization-date {
+  text-align: left;
+  padding-top: 20px;
+  font-size: 22px;
+} */
+
+
+
+/* LARGE SCREEN */
+/* @media (min-width: 1050px) {
+  .footer-container {
+    margin-top: 200px;
+    height: 130px;
+    padding: 50px;
+  }
+} */
+
+/* LARGER SCREEN */
+/* @media (min-width: 1400px) {
+ 
+} */

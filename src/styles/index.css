@@ -1,0 +1,9 @@
+* {
+  box-sizing: border-box;
+  cursor: url(https://cur.cursors-4u.net/others/oth-8/oth737.cur), auto !important; 
+}
+
+@media (min-width: 768px){
+.container, .container-md, .container-sm {
+    max-width: 100%}
+}
