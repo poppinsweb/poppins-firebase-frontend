@@ -15,11 +15,10 @@ export default defineConfig({
           if (id.includes('node_modules')) {
             if (id.includes('react')) return 'react';
             if (id.includes('react-bootstrap') || id.includes('bootstrap')) return 'bootstrap';
-            if (id.includes('jspdf') || id.includes('html2canvas')) return 'pdf-tools';
+            if (id.includes('jspdf') || id.includes('html2canvas') || id.includes('html2pdf.js')) return 'pdf-tools';
             if (id.includes('sweetalert2')) return 'alerts';
             if (id.includes('axios')) return 'axios';
             if (id.includes('react-select')) return 'select';
-            if (id.includes('react-slick')) return 'carousel';
             return 'vendor';
           }
         }

@@ -13,18 +13,18 @@ export const TokenBox = () => {
     data: tokensData,
     loading: tokensLoading,
     error: tokensError,
-  } = useFetchData(`${import.meta.env.VITE_API_URL}/api/tokens`);
+  } = useFetchData(`${import.meta.env.VITE_URL}/tokens`);
 
   const {
     data: evaluationsData,
     loading: evaluationsLoading,
     error: evaluationsError,
-  } = useFetchData(`${import.meta.env.VITE_API_URL}/api/completevaluations`);
+  } = useFetchData(`${import.meta.env.VITE_API_URL}/completevaluations`);
 
   const { data: childData } = useFetchData(
-    `${import.meta.env.VITE_API_URL}/api/childrenres`
+    `${import.meta.env.VITE_API_URL}/childrenres`
   );
-  console.log(`${import.meta.env.VITE_API_URL}/api/childrenres`);
+  console.log(`${import.meta.env.VITE_API_URL}/childrenres`);
   
 
   const navigate = useNavigate();

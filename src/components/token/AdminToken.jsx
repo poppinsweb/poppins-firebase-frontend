@@ -4,14 +4,14 @@ import { useFetchData } from "../../services/hooks/useFetchData";
 
 export const AdminToken = () => {
   const { evaluTokens, error, loading, fetchEvaluTokens } = useEvaluationToken();
-  const { data: usersData, loading: usersLoading, error: usersError } = useFetchData(`${import.meta.env.VITE_API_URL}/api/users`);
+  const { data: usersData, loading: usersLoading, error: usersError } = useFetchData(`${import.meta.env.VITE_API_URL}/users`);
   const [localError, setLocalError] = useState(null);
   const [numTokensMap, setNumTokensMap] = useState({});
 
   const handleCreate = async (email, userId, numTokens) => {
     try {
       for (let i = 0; i < numTokens; i++) {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/create-token`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/create-token`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export const AdminToken = () => {
 
   const handleDelete = async (tokenId) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/delete-token/${tokenId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/delete-token/${tokenId}`, {
         method: "DELETE",
       });
 
