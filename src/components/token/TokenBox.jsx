@@ -13,7 +13,7 @@ export const TokenBox = () => {
     data: tokensData,
     loading: tokensLoading,
     error: tokensError,
-  } = useFetchData(`${import.meta.env.VITE_URL}/tokens`);
+  } = useFetchData(`${import.meta.env.VITE_API_URL}/tokens`);
 
   const {
     data: evaluationsData,

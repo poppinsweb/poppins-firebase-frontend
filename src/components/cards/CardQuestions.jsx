@@ -19,7 +19,7 @@ const CardQuestions = ({ questionsData }) => {
     submitEvaluation,
     loading: submitting,
     error: submitError,
-  } = useSubmitEvaluation(`${import.meta.env.VITE_API_URL}/api/completevaluation`);
+  } = useSubmitEvaluation(`${import.meta.env.VITE_API_URL}/completevaluation`);
 
   useEffect(() => {
     if (questionsData && questionsData.length > 0) {
