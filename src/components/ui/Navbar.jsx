@@ -44,6 +44,11 @@ export function Navbar() {
             {/* Enlaces para usuarios no logueados */}
             {!user && (
               <>
+              <li className="nav-item">
+                  <NavLink className="nav-link" to="/register">
+                    Registrarse
+                  </NavLink>
+                </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/login">
                     Ingresar

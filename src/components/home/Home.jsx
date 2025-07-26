@@ -34,7 +34,7 @@ export function Home() {
         <p>
           Para diligenciar la Encuesta debe adquirir un TOKEN que le permitirá
           hacer una evaluación inicial y una de seguimiento en un tiempo máximo
-          de 6 meses.
+          de 6 meses. Si es la primera vez que diligencia la encuesta, debe registrarse: <a href="/register">AQUÍ</a>
         </p>
         Duración de la Encuesta: aproximadamente 10 minutos .
       </section>
