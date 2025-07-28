@@ -25,7 +25,6 @@ export const TokenBox = () => {
     `${import.meta.env.VITE_API_URL}/childrenres`
   );
   console.log(`${import.meta.env.VITE_API_URL}/childrenres`);
-  
 
   const navigate = useNavigate();
 
@@ -94,12 +93,16 @@ export const TokenBox = () => {
 
   const getTokenAlias = (token) => {
     const child = childData?.find((child) => child.evaluationtoken === token);
-    return child? `${child.firstName} ${child.lastName}` : token;
+    return child ? `${child.firstName} ${child.lastName}` : token;
   };
 
   return (
     <>
       <div className="box-tokens-container">
+        <div>
+          <input type="text" placeholder="Token alfanumérico" />{" "}
+          <button className="">Agregar</button>
+        </div>
         {userEvaluationTokens.length === 0 ? (
           <p>No tiene tokens disponibles</p>
         ) : (
