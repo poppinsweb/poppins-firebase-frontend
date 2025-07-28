@@ -126,18 +126,14 @@ const PageChildData = () => {
 
   return (
     <div className="user-container">
-      <img
-        src={umbrellafirst}
-        className="logo2"
-        alt="Logo paraguas"
-      />
+      <img src={umbrellafirst} className="logo2" alt="Logo paraguas" />
       <h2 className="user-title">Datos del Niño</h2>
       <div>Token Seleccionado: {evaluationtoken}</div>
       <div>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label className="user-label" htmlFor="firstName">
-              <h3>Nombres</h3>
+          <div className="input-container">
+            <label className="" htmlFor="firstName">
+              <h3 className="purple1">Nombres</h3>
             </label>
           </div>
           <input
@@ -148,9 +144,9 @@ const PageChildData = () => {
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
-          <div>
-            <label className="user-label" htmlFor="lastName">
-              <h3>Apellidos</h3>
+          <div className="input-container">
+            <label className="" htmlFor="lastName">
+              <h3 className="purple1">Apellidos</h3>
             </label>
           </div>
           <input
@@ -306,7 +302,10 @@ const PageChildData = () => {
               onChange={(e) => setIsChecked(e.target.checked)}
             />
             <label className="form-check-label">
-              Acepto la <a target="_blank" href="/privacity">política de tratamiento de datos personales</a> 
+              Acepto la{" "}
+              <a target="_blank" href="/privacity">
+                política de tratamiento de datos personales
+              </a>
             </label>
           </div>
           <button
