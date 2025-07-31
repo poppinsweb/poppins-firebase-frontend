@@ -100,14 +100,14 @@ export const TokenBox = () => {
     <>
       <div className="box-tokens-container">
         <div>
-          <input type="text" placeholder="Token alfanumérico" />{" "}
-          <button className="">Agregar</button>
+          <input type="text" placeholder="Token alfanumérico" className="add-token" />{" "}
+          <button className="add-token-btn">Agregar</button>
         </div>
         {userEvaluationTokens.length === 0 ? (
           <p>No tiene tokens disponibles</p>
         ) : (
           <>
-            <p>**** HAGA CLICK SOBRE EL TOKEN QUE VA A UTILIZAR ****</p>
+            <p className="text-token">**** HAGA CLICK SOBRE EL TOKEN QUE VA A UTILIZAR ****</p>
             <h2 className="code-title">Token</h2>
             <div className="radio-token-container">
               {userEvaluationTokens.map((token, index) => (

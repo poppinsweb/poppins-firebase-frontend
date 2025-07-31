@@ -127,9 +127,31 @@
 
 /* LARGE SCREEN */
 @media (min-width: 1200px) {
+  .add-token {
+    border-radius: 5px;
+    padding: 3px;
+  }
+
+  .add-token-btn {
+    border-radius: 5px;
+    background-color: #543c80;
+    color: #fff;
+    padding: 3px 10px;
+  }
+
+  .add-token-btn:hover {
+    background-color: #198754;
+    color: #fff;
+    cursor: url(https://cur.cursors-4u.net/games/gam-4/gam327.cur), auto !important; 
+  }
+
   .code-title {
     font-size: 1.5rem;
-    margin-top: 30px;
+    /* margin-top: 20px; */
+  }
+
+  .text-token {
+    margin-top: 20px;
   }
 
   .radio-token-container {
