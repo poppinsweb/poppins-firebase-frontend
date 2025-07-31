@@ -23,7 +23,7 @@ export function Home() {
               sueño
             </li>
             <li className="list-item">
-              nivel de habilidad alcanzado en actividades básicas de la vida
+              Nivel de habilidad alcanzado en actividades básicas de la vida
               diaria
             </li>
             <li className="list-item">
