@@ -143,7 +143,7 @@ export const TokenBox = () => {
             onClick={handleNavigateEvaluation}
             disabled={isInitialEvaluationDisabled}
           >
-            Ir a Encuesta
+            {isResultDisabled ? "Ir a Encuesta" : "Encuesta de seguimiento"}
           </button>
         </div>
         <div className="btn-token-container">
