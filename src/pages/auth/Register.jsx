@@ -40,7 +40,7 @@ const Register = () => {
         <h2 className="title-register">Registro de Usuarios</h2>
         <form onSubmit={handleRegister}>
           <div>
-            <label>Correo Electrónico:</label>
+            <label>Nombre de Usuario:</label>
             <input
               className="form-control"
               type="email"

@@ -20,11 +20,11 @@ export function Home() {
           <ol>
             <li className="list-item">
               Independencia en actividades de baño, vestido, alimentación y
-              sueño
+              sueño.
             </li>
             <li className="list-item">
               Nivel de habilidad alcanzado en actividades básicas de la vida
-              diaria
+              diaria.
             </li>
             <li className="list-item">
               Nivel de interiorización de hábitos y rutinas básicas.
@@ -32,11 +32,12 @@ export function Home() {
           </ol>
         </p>
         <p>
-          Para diligenciar la Encuesta debe adquirir un TOKEN <a href="/#">AQUÍ</a> que le permitirá
+          Para diligenciar la Encuesta debe adquirir un TOKEN <a href="/#" className="link-buy">AQUÍ</a> que le permitirá
           hacer una evaluación inicial, y una de seguimiento, en un tiempo máximo
-          de 6 meses. Si es la primera vez que diligencia la encuesta, debe registrarse: <a href="/register">AQUÍ</a>
-        </p>
-        Duración de la Encuesta: aproximadamente 10 minutos .
+          de 6 meses. Si es la primera vez que diligencia la encuesta, y ya adquirió el TOKEN, debe registrarse: <a href="/register" className="link-buy">AQUÍ</a>
+        </p> 
+        <p>Duración de la Encuesta: aproximadamente 10 minutos. Tenga en cuenta que no debe cerrar la sesión hasta que finalice la encuesta, ya que de lo contrario se perderá el progreso.</p>
+        <p>Recomendación: La encuesta debe ser diligenciada por un adulto que comparta con el niño la realización de las actividades de la vida diaria.</p>
       </section>
     </div>
   );

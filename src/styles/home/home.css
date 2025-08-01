@@ -49,8 +49,8 @@
     width: auto;
     height: 900px;
     margin: 0 0 0 5px;
-    padding: 150px 100px;
-    font-size: 1.5rem;
+    padding: 80px 100px;
+    font-size: 1.3rem;
     text-align: justify;
     background-color: #6870a1;
     color: #e1ebfb;
@@ -58,6 +58,14 @@
 
   .list {
     text-decoration: underline;
+  }
+
+  .link-buy {
+    color:blue
+  }
+
+  .link-buy:hover {
+    color: rgb(54, 54, 120);
   }
 }
 
