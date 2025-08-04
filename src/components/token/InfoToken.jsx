@@ -1,14 +1,17 @@
 import { useState } from "react";
 
 export const InfoToken = () => {
-  const [collapsedSections, setCollapsedSections] = useState([true, true, true]);
+  const [collapsedSections, setCollapsedSections] = useState([
+    true,
+    true,
+    true,
+  ]);
 
   const handleToggleCollapse = (index) => {
-    setCollapsedSections((prev) =>
-      prev.map((collapsed, i) => (i === index ? !collapsed : collapsed))
-    );
-  };
-
+  setCollapsedSections((prev) =>
+    prev.map((_, i) => i === index ? !prev[index] : true)
+  );
+};
   return (
     <div className="infotoken-main-container">
       <div className="btn-token-container">
@@ -22,7 +25,9 @@ export const InfoToken = () => {
           </button>
           {!collapsedSections[0] && (
             <div className="btn-info-text">
-              <p><strong>PRIMEROS PASOS:</strong></p>
+              <p>
+                <strong>PRIMEROS PASOS:</strong>
+              </p>
               <ol>
                 <li>Elija el TOKEN que tenga disponible</li>
                 <li>Presione el botón "Datos del Niño"</li>
@@ -50,9 +55,7 @@ export const InfoToken = () => {
             <div className="btn-info-text">
               <ol>
                 <li>Elija el TOKEN que ya contiene los datos del niño</li>
-                <li>
-                  Presione el botón "Ir a Encuesta"
-                </li>
+                <li>Presione el botón "Ir a Encuesta"</li>
                 <li>
                   Por favor disponga de aproximadamente 20 a 30 minutos para
                   diligenciar todas las preguntas (51 en total)

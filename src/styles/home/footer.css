@@ -34,6 +34,11 @@
 
 }
 
+.memark {
+  color: #565555a8;
+}
+
+
 /* MEDIUM SCREEN 1024x800 */
 @media (min-width: 992px) {
   .footer-links {

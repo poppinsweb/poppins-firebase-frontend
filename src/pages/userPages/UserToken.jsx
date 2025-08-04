@@ -15,11 +15,11 @@ export function UserToken() {
       ) : (
         <>
           <div className="token-main-container">
-            <LogoToken />
-            <div className="container-info-token">
-              <InfoToken />
-              {/* <InfoToken />
+            <InfoToken />
+            {/* <InfoToken />
               <InfoToken /> */}
+            <div className="container-info-token">
+              <LogoToken />
             </div>
             <div className="row">
               <div className="col-md-10 token-card">

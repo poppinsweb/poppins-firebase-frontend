@@ -54,7 +54,7 @@ export const Footer = () => {
               rel="noopener noreferrer"
             >
               <FaRegEnvelope alt="Link-mailto" className="social" />
-            </a> webapp <FaHandHoldingHeart /> by alecode
+            </a> <p className="memark">webapp <FaHandHoldingHeart /> by alecode</p>
           </section>
         </div>
       </footer>

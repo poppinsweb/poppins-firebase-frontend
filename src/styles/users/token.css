@@ -4,9 +4,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-image: url("../images/cloud-stars2.jpg"); */
-  /* background-repeat: no-repeat; */
-  /* background-size: contain; */
   min-height: 1100px;
   width: auto;
   background-color: #6971a1;
@@ -53,13 +50,6 @@
   display: flex;
   justify-content: center;
 }
-
-/* .radio-token-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 15px;
-} */
 
 .btn-add {
   margin: 1.5rem;
@@ -127,6 +117,13 @@
 
 /* LARGE SCREEN */
 @media (min-width: 1200px) {
+  .container-info-token {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
   .add-token {
     border-radius: 5px;
     padding: 3px;
@@ -166,8 +163,6 @@
   }
 
   .btn-token-container {
-    display: flex;
-    gap: 50px;
     margin: 20px;
     padding: 0px 50px;
   }
@@ -186,9 +181,10 @@
   }
 
   .btn-token-info {
-    font-size: 20px;
-    width: 350px;
-    height: 100px;
+    font-size: 1.2rem;
+    width: 500px;
+    height: 80px;
+    margin-bottom: 20px;
   }
 
   .btn-token {
@@ -204,20 +200,7 @@
 
   .btn-info-text {
     font-size: 1.5rem;
-    padding: 40px 150px;
-  }
-
-  .btn-info-container-card {
-    justify-content: center;
-    margin: 20px;
-    padding: 0px 250px;
-  }
-
-  .btn-info-text-card {
-    font-size: 1.8rem;
-    margin: 0px;
-    text-align: justify;
-    background-color: #bec2d392;
+    padding: 40px 250px;
   }
 
   .custom-table {
