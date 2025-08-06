@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    if (storedUser) {
+    if (user) {
       setUser(JSON.parse(storedUser));
     }
   }, []);
