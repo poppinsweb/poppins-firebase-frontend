@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../../styles/admin/create-user.css";
+import "../../styles/home/login.css"
 
-const CreateUser = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("user");
+  const [password2, setPassword2] = useState("");
   const [message, setMessage] = useState("");
 
   const handleRegister = async (e) => {
@@ -14,7 +14,7 @@ const CreateUser = () => {
     const userData = {
       email,
       password,
-      admin: role === "admin",
+      password2,
     };
 
     try {
@@ -27,7 +27,7 @@ const CreateUser = () => {
       // Reset form fields
       setEmail("");
       setPassword("");
-      setRole("user");
+      setPassword2("");
     } catch (error) {
       setMessage("Failed to register user");
       console.error("Error:", error);
@@ -35,15 +35,15 @@ const CreateUser = () => {
   };
 
   return (
-    <div className="registration-container">
+    <div className="page-container">
       <div className="register-card">
-        <h2 className="title-register">Registrar Usuarios</h2>
+        <h2 className="title-register">Registro de Usuarios</h2>
         <form onSubmit={handleRegister}>
           <div>
-            <label>Correo Electrónico:</label>
+            <label>Nombre de Usuario:</label>
             <input
               className="form-control"
-              type="email"
+              type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -60,18 +60,17 @@ const CreateUser = () => {
             />
           </div>
           <div>
-            <label>Rol:</label>
-            <select
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              className="form-select"
-            >
-              <option value="user">Usuario</option>
-              <option value="admin">Administrador</option>
-            </select>
+            <label>Repetir Contraseña:</label>
+           <input
+              className="form-control"
+              type="password"
+              value={password2}
+              onChange={(e) => setPassword2(e.target.value)}
+              required
+            />
           </div>
-          <button className="btn btn-color" type="submit">
-            Crear usuario
+          <button className="btn btn-color btn-login" type="submit">
+            Registrarse
           </button>
         </form>
         {message && <p>{message}</p>}
@@ -80,4 +79,4 @@ const CreateUser = () => {
   );
 };
 
-export default CreateUser;
+export default Register;

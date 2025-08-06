@@ -135,12 +135,12 @@ export const CardResultSkills = () => {
         <thead className="result-titles">
           <tr>
             <th>HABILIDADES</th>
-            <th className="table-primary">ADQUIRIDO</th>
+            <th className="table-primary">CON HABILIDAD</th>
             <th className="table-success">
-              EN PROCESO AVANZADO DE ADQUISICIÓN
+              EN PROCESO AVANZADO DE APRENDIZAJE
             </th>
-            <th className="table-warning">EN PROCESO INICIAL DE ADQUISICIÓN</th>
-            <th className="table-danger">NO ADQUIRIDO</th>
+            <th className="table-warning">EN PROCESO INICIAL DE APRENDIZAJE</th>
+            <th className="table-danger">NO LO HA INTENTADO</th>
           </tr>
         </thead>
         <tbody className="result-titles">

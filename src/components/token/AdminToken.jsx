@@ -3,21 +3,29 @@ import { useEvaluationToken } from "../../context/EvaluationTokenProvider";
 import { useFetchData } from "../../services/hooks/useFetchData";
 
 export const AdminToken = () => {
-  const { evaluTokens, error, loading, fetchEvaluTokens } = useEvaluationToken();
-  const { data: usersData, loading: usersLoading, error: usersError } = useFetchData(`${import.meta.env.VITE_API_URL}/api/users`);
+  const { evaluTokens, error, loading, fetchEvaluTokens } =
+    useEvaluationToken();
+  const {
+    data: usersData,
+    loading: usersLoading,
+    error: usersError,
+  } = useFetchData(`${import.meta.env.VITE_API_URL}/users`);
   const [localError, setLocalError] = useState(null);
   const [numTokensMap, setNumTokensMap] = useState({});
 
   const handleCreate = async (email, userId, numTokens) => {
     try {
       for (let i = 0; i < numTokens; i++) {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/create-token`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, userId }),
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/create-token`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, userId }),
+          }
+        );
 
         if (!response.ok) {
           const errorData = await response.json();
@@ -33,9 +41,12 @@ export const AdminToken = () => {
 
   const handleDelete = async (tokenId) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/delete-token/${tokenId}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/delete-token/${tokenId}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -81,7 +92,9 @@ export const AdminToken = () => {
                   <input
                     type="number"
                     value={numTokensMap[user._id] || 1}
-                    onChange={(e) => handleNumTokensChange(user._id, Number(e.target.value))}
+                    onChange={(e) =>
+                      handleNumTokensChange(user._id, Number(e.target.value))
+                    }
                     min="1"
                     className="form-control num"
                   />
@@ -89,7 +102,13 @@ export const AdminToken = () => {
                 <td>
                   <button
                     className="btn btn-outline-success"
-                    onClick={() => handleCreate(user.email, user._id, numTokensMap[user._id] || 1)}
+                    onClick={() =>
+                      handleCreate(
+                        user.email,
+                        user._id,
+                        numTokensMap[user._id] || 1
+                      )
+                    }
                   >
                     Crear
                   </button>

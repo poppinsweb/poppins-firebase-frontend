@@ -31,9 +31,9 @@ const LoginPage = () => {
         <h2 className="title-login">Ingreso de Usuario</h2>
         <form onSubmit={handleLogin}>
           <div>
-            <label>Correo electrónico:</label>
+            <label>Nombre de Usuario:</label>
             <input
-              type="email"
+              type="text"
               className="form-control"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

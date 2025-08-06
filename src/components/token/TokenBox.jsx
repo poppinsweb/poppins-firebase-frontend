@@ -13,19 +13,18 @@ export const TokenBox = () => {
     data: tokensData,
     loading: tokensLoading,
     error: tokensError,
-  } = useFetchData(`${import.meta.env.VITE_API_URL}/api/tokens`);
+  } = useFetchData(`${import.meta.env.VITE_API_URL}/tokens`);
 
   const {
     data: evaluationsData,
     loading: evaluationsLoading,
     error: evaluationsError,
-  } = useFetchData(`${import.meta.env.VITE_API_URL}/api/completevaluations`);
+  } = useFetchData(`${import.meta.env.VITE_API_URL}/completevaluations`);
 
   const { data: childData } = useFetchData(
-    `${import.meta.env.VITE_API_URL}/api/childrenres`
+    `${import.meta.env.VITE_API_URL}/childrenres`
   );
-  console.log(`${import.meta.env.VITE_API_URL}/api/childrenres`);
-  
+  console.log(`${import.meta.env.VITE_API_URL}/childrenres`);
 
   const navigate = useNavigate();
 
@@ -94,17 +93,21 @@ export const TokenBox = () => {
 
   const getTokenAlias = (token) => {
     const child = childData?.find((child) => child.evaluationtoken === token);
-    return child? `${child.firstName} ${child.lastName}` : token;
+    return child ? `${child.firstName} ${child.lastName}` : token;
   };
 
   return (
     <>
       <div className="box-tokens-container">
+        <div>
+          <input type="text" placeholder="Token alfanumérico" className="add-token" />{" "}
+          <button className="add-token-btn">Agregar</button>
+        </div>
         {userEvaluationTokens.length === 0 ? (
           <p>No tiene tokens disponibles</p>
         ) : (
           <>
-            <p>**** HAGA CLICK SOBRE EL TOKEN QUE VA A UTILIZAR ****</p>
+            <p className="text-token">**** HAGA CLICK SOBRE EL TOKEN QUE VA A UTILIZAR ****</p>
             <h2 className="code-title">Token</h2>
             <div className="radio-token-container">
               {userEvaluationTokens.map((token, index) => (
@@ -140,7 +143,7 @@ export const TokenBox = () => {
             onClick={handleNavigateEvaluation}
             disabled={isInitialEvaluationDisabled}
           >
-            Ir a Encuesta
+            {isResultDisabled ? "Ir a Encuesta" : "Encuesta de seguimiento"}
           </button>
         </div>
         <div className="btn-token-container">

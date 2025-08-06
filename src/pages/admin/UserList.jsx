@@ -1,12 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { useFetchData } from '../../services/hooks/useFetchData';
+import React, { useState, useEffect } from "react";
+import { useFetchData } from "../../services/hooks/useFetchData";
 
 const UserList = () => {
-  const { data: usersData, loading: usersLoading, error: usersError } = useFetchData(`${import.meta.env.VITE_API_URL}/api/users`);
-  const { data: childrenData, loading: childrenLoading, error: childrenError } = useFetchData(`${import.meta.env.VITE_API_URL}/api/childrenres`);
+  const {
+    data: usersData,
+    loading: usersLoading,
+    error: usersError,
+  } = useFetchData(`${import.meta.env.VITE_API_URL}/users`);
+  const {
+    data: childrenData,
+    loading: childrenLoading,
+    error: childrenError,
+  } = useFetchData(`${import.meta.env.VITE_API_URL}/childrenres`);
+  const {
+    data: tokenData,
+    loading: tokenLoading,
+    error: tokenError,
+  } = useFetchData(`${import.meta.env.VITE_API_URL}/tokens`);
 
   const [users, setUsers] = useState([]);
   const [children, setChildren] = useState([]);
+  const [tokens, setTokens] = useState([]);
 
   useEffect(() => {
     if (usersData) {
@@ -20,53 +34,72 @@ const UserList = () => {
     }
   }, [childrenData]);
 
+  useEffect(() => {
+    if (tokenData) {
+      setTokens(tokenData.tokens);
+    }
+    console.log(tokenData);
+  }, [tokenData]);
+
   const handleDeleteUser = async (userId) => {
-    const confirmed = window.confirm("¿Estás seguro de que deseas eliminar este usuario?");
+    const confirmed = window.confirm(
+      "¿Estás seguro de que deseas eliminar este usuario?"
+    );
     if (!confirmed) return;
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/delete-user/${userId}`, {
-        method: 'DELETE',
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/delete-user/${userId}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Error eliminando usuario');
+        throw new Error(errorData.message || "Error eliminando usuario");
       }
 
       // Eliminar usuario de la lista local
-      setUsers((prevUsers) => prevUsers.filter(user => user._id !== userId));
-
+      setUsers((prevUsers) => prevUsers.filter((user) => user._id !== userId));
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
   const handleDeleteChild = async (childId) => {
-    const confirmed = window.confirm("¿Estás seguro de que deseas eliminar este niño?");
+    const confirmed = window.confirm(
+      "¿Estás seguro de que deseas eliminar este niño?"
+    );
     if (!confirmed) return;
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/delete-child/${childId}`, {
-        method: 'DELETE',
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/delete-child/${childId}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Error eliminando niño');
+        throw new Error(errorData.message || "Error eliminando niño");
       }
 
       // Eliminar niño de la lista local
-      setChildren((prevChildren) => prevChildren.filter(child => child._id !== childId));
-
+      setChildren((prevChildren) =>
+        prevChildren.filter((child) => child._id !== childId)
+      );
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
-  if (usersLoading || childrenLoading) return <p>Loading...</p>;
+  if (usersLoading || childrenLoading || tokenLoading) return <p>Loading...</p>;
   if (usersError) return <p>Error loading user data: {usersError.message}</p>;
-  if (childrenError) return <p>Error loading children data: {childrenError.message}</p>;
+  if (childrenError)
+    return <p>Error loading children data: {childrenError.message}</p>;
+  if (tokenError) return <p>Error loading token data: {tokenError.message}</p>;
 
   return (
     <>
@@ -75,8 +108,6 @@ const UserList = () => {
         <table className="table table-hover table-striped">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Token</th>
               <th>Email</th>
               <th>Admin</th>
               <th>Eliminar</th>
@@ -85,8 +116,6 @@ const UserList = () => {
           <tbody>
             {users.map((user) => (
               <tr key={user._id}>
-                <td>{user._id}</td>
-                <td>{user.evaluationtoken}</td>
                 <td>{user.email}</td>
                 <td>{user.admin.toString()}</td>
                 <td>
@@ -102,44 +131,64 @@ const UserList = () => {
           </tbody>
         </table>
       </div>
-      <h2>Niños</h2>
-      {children.length > 0 ? (
+      <div>
+        <h2>TOKENS</h2>
         <table className="table table-hover table-striped">
           <thead>
             <tr>
-              <th>ID</th>
               <th>Token</th>
-              <th>NOMBRES</th>
-              <th>APELLIDOS</th>
-              <th>SEXO</th>
-              <th>GRADO</th>
-              <th>Eliminar</th>
+              <th>Email</th>
             </tr>
           </thead>
           <tbody>
-            {children.map((child) => (
-              <tr key={child._id}>
-                <td>{child._id}</td>
-                <td>{child.evaluationtoken}</td>
-                <td>{child.firstName}</td>
-                <td>{child.lastName}</td>
-                <td>{child.responses[0].value}</td>
-                <td>{child.responses[3].value}</td>
-                <td>
-                  <button
-                    className="btn btn-outline-danger"
-                    onClick={() => handleDeleteChild(child._id)}
-                  >
-                    Borrar
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {Array.isArray(tokens) &&
+              tokens.map((token) => (
+                <tr key={token._id}>
+                  <td>{token.evaluationToken}</td>
+                  <td>{token.email}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
-      ) : (
-        "No hay Niños"
-      )}
+      </div>
+      <div>
+        <h2>NIÑOS</h2>
+        {children.length > 0 ? (
+          <table className="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>NOMBRES</th>
+                <th>APELLIDOS</th>
+                <th>SEXO</th>
+                <th>GRADO</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {children.map((child) => (
+                <tr key={child._id}>
+                  <td>{child.evaluationtoken}</td>
+                  <td>{child.firstName}</td>
+                  <td>{child.lastName}</td>
+                  <td>{child.responses[0].value}</td>
+                  <td>{child.responses[3].value}</td>
+                  <td>
+                    <button
+                      className="btn btn-outline-danger"
+                      onClick={() => handleDeleteChild(child._id)}
+                    >
+                      Borrar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          "No hay Niños"
+        )}
+      </div>
     </>
   );
 };
