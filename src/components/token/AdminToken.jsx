@@ -69,7 +69,7 @@ export const AdminToken = () => {
   if (usersError) return <p>Error loading users data: {usersError.message}</p>;
   if (localError) return <p>Error: {localError}</p>;
 
-  const sortedUsers = usersData.sort((a, b) => a.email.localeCompare(b.email));
+  const sortedUsers = usersData.sort((a, b) => a.userName || a.email.localeCompare(b.userName || b.email));
 
   return (
     <div className="admin-token-main-container">
@@ -87,7 +87,7 @@ export const AdminToken = () => {
           {sortedUsers.map((user) => (
             <React.Fragment key={user._id}>
               <tr>
-                <td>{user.email}</td>
+                <td>{user.userName || user.email}</td>
                 <td>
                   <input
                     type="number"
@@ -104,7 +104,7 @@ export const AdminToken = () => {
                     className="btn btn-outline-success"
                     onClick={() =>
                       handleCreate(
-                        user.email,
+                        user.userName || user.email,
                         user._id,
                         numTokensMap[user._id] || 1
                       )

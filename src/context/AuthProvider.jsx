@@ -20,25 +20,40 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
-    if (user) {
-      setUser(JSON.parse(storedUser));
+    let user = null;
+
+    if (storedUser && storedUser !== "undefined") {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (error) {
+        user = null;
+        console.error("Error parsing user from localStorage:", error);
+      }
     }
   }, []);
 
-  const login = async (email, password) => {
+  const login = async (identifier, password) => {
     try {
       setLoading(true);
+
+      // Detecta si es un email o un userName
+      const isEmail = identifier.includes("@");
+      const payload = isEmail
+        ? { email: identifier, password }
+        : { userName: identifier, password };
+
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/login`,
-        { email, password },
+        payload,
         { withCredentials: true }
       );
       setUser(response.data.user);
       localStorage.setItem("user", JSON.stringify(response.data.user));
       localStorage.setItem("sessionActive", "true");
-      console.log("User logged in. User:", response.data.user); // ****************************
     } catch (error) {
       console.error("Error logging in:", error);
+    } finally {
+      setLoading(false);
     }
   };
 

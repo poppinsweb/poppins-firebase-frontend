@@ -59,6 +59,10 @@ label {
     width: 100%;
   }
 
+  .add-token {
+    text-align: center;
+  }
+
   .btn-login {
     margin-top: 50px;
   }

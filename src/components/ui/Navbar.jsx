@@ -16,6 +16,9 @@ export function Navbar() {
     navigate("/login");
   };
 
+  // console.log("user en navbar:", user);
+  
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -60,11 +63,11 @@ export function Navbar() {
             {/* Enlaces para admin */}
             {user && user.admin && (
               <>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <NavLink className="nav-link" to="/crear">
                     Crear usuario
                   </NavLink>
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/lista">
                     Lista
@@ -93,7 +96,7 @@ export function Navbar() {
           className="d-flex ms-auto align-items-center gap-2 mt-2 mt-lg-0"
         >
           <span className="nav-item nav-link text-primary">
-            {user?.email}
+            {user?.userName || user?.email }
           </span>
           {user ? (
             <button className="btn btn-outline-danger" onClick={handleLogout}>
