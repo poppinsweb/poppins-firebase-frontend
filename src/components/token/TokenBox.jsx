@@ -99,10 +99,10 @@ export const TokenBox = () => {
   return (
     <>
       <div className="box-tokens-container">
-        <div>
+        {/* <div>
           <input type="text" placeholder="Token alfanumérico" className="add-token" />{" "}
           <button className="add-token-btn">Agregar</button>
-        </div>
+        </div> */}
         {userEvaluationTokens.length === 0 ? (
           <p>No tiene tokens disponibles</p>
         ) : (

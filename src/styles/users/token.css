@@ -124,17 +124,17 @@
     align-items: center;
   }
 
-  .add-token {
+  /* .add-token {
     border-radius: 5px;
     padding: 3px;
-  }
+  } */
 
-  .add-token-btn {
+  /* .add-token-btn {
     border-radius: 5px;
     background-color: #543c80;
     color: #fff;
     padding: 3px 10px;
-  }
+  } */
 
   .add-token-btn:hover {
     background-color: #198754;

@@ -25,20 +25,21 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = async (email, password) => {
+  const login = async (identifier, password) => {
     try {
       setLoading(true);
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/login`,
-        { email, password },
+        { identifier, password },
         { withCredentials: true }
       );
       setUser(response.data.user);
       localStorage.setItem("user", JSON.stringify(response.data.user));
       localStorage.setItem("sessionActive", "true");
-      console.log("User logged in. User:", response.data.user); // ****************************
     } catch (error) {
       console.error("Error logging in:", error);
+    } finally {
+      setLoading(false);
     }
   };
 

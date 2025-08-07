@@ -7,11 +7,11 @@ const UserList = () => {
     loading: usersLoading,
     error: usersError,
   } = useFetchData(`${import.meta.env.VITE_API_URL}/users`);
-  const {
-    data: childrenData,
-    loading: childrenLoading,
-    error: childrenError,
-  } = useFetchData(`${import.meta.env.VITE_API_URL}/childrenres`);
+  // const {
+  //   data: childrenData,
+  //   loading: childrenLoading,
+  //   error: childrenError,
+  // } = useFetchData(`${import.meta.env.VITE_API_URL}/childrenres`);
   const {
     data: tokenData,
     loading: tokenLoading,
@@ -19,7 +19,7 @@ const UserList = () => {
   } = useFetchData(`${import.meta.env.VITE_API_URL}/tokens`);
 
   const [users, setUsers] = useState([]);
-  const [children, setChildren] = useState([]);
+  // const [children, setChildren] = useState([]);
   const [tokens, setTokens] = useState([]);
 
   useEffect(() => {
@@ -28,11 +28,11 @@ const UserList = () => {
     }
   }, [usersData]);
 
-  useEffect(() => {
-    if (childrenData) {
-      setChildren(childrenData);
-    }
-  }, [childrenData]);
+  // useEffect(() => {
+  //   if (childrenData) {
+  //     setChildren(childrenData);
+  //   }
+  // }, [childrenData]);
 
   useEffect(() => {
     if (tokenData) {
@@ -67,38 +67,38 @@ const UserList = () => {
     }
   };
 
-  const handleDeleteChild = async (childId) => {
-    const confirmed = window.confirm(
-      "¿Estás seguro de que deseas eliminar este niño?"
-    );
-    if (!confirmed) return;
+  // const handleDeleteChild = async (childId) => {
+  //   const confirmed = window.confirm(
+  //     "¿Estás seguro de que deseas eliminar este niño?"
+  //   );
+  //   if (!confirmed) return;
 
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/delete-child/${childId}`,
-        {
-          method: "DELETE",
-        }
-      );
+  //   try {
+  //     const response = await fetch(
+  //       `${import.meta.env.VITE_API_URL}/delete-child/${childId}`,
+  //       {
+  //         method: "DELETE",
+  //       }
+  //     );
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Error eliminando niño");
-      }
+  //     if (!response.ok) {
+  //       const errorData = await response.json();
+  //       throw new Error(errorData.message || "Error eliminando niño");
+  //     }
 
-      // Eliminar niño de la lista local
-      setChildren((prevChildren) =>
-        prevChildren.filter((child) => child._id !== childId)
-      );
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+  //     // Eliminar niño de la lista local
+  //     setChildren((prevChildren) =>
+  //       prevChildren.filter((child) => child._id !== childId)
+  //     );
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //   }
+  // };
 
-  if (usersLoading || childrenLoading || tokenLoading) return <p>Loading...</p>;
+  if (usersLoading ||  tokenLoading) return <p>Loading...</p>;
   if (usersError) return <p>Error loading user data: {usersError.message}</p>;
-  if (childrenError)
-    return <p>Error loading children data: {childrenError.message}</p>;
+  // if (childrenError)
+  //   return <p>Error loading children data: {childrenError.message}</p>;
   if (tokenError) return <p>Error loading token data: {tokenError.message}</p>;
 
   return (
@@ -108,7 +108,7 @@ const UserList = () => {
         <table className="table table-hover table-striped">
           <thead>
             <tr>
-              <th>Email</th>
+              <th>Nombre de Usuario</th>
               <th>Admin</th>
               <th>Eliminar</th>
             </tr>
@@ -137,7 +137,7 @@ const UserList = () => {
           <thead>
             <tr>
               <th>Token</th>
-              <th>Email</th>
+              <th>Email con el que se compró el Token</th>
             </tr>
           </thead>
           <tbody>
@@ -151,7 +151,7 @@ const UserList = () => {
           </tbody>
         </table>
       </div>
-      <div>
+      {/* <div>
         <h2>NIÑOS</h2>
         {children.length > 0 ? (
           <table className="table table-hover table-striped">
@@ -188,7 +188,7 @@ const UserList = () => {
         ) : (
           "No hay Niños"
         )}
-      </div>
+      </div> */}
     </>
   );
 };

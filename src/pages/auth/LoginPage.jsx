@@ -4,7 +4,7 @@ import { useAuth } from "../../context/AuthProvider";
 import "../../styles/home/login.css";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
@@ -15,9 +15,9 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const successLogin = await login(email, password);
+      const successLogin = await login(userName, password);
         setMessage("Login successful");
-        setEmail("");
+        setUserName("");
         setPassword("");
         navigate('/token')
     } catch (error) {
@@ -35,8 +35,8 @@ const LoginPage = () => {
             <input
               type="text"
               className="form-control"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
               required
             />
           </div>
