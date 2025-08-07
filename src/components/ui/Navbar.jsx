@@ -16,7 +16,7 @@ export function Navbar() {
     navigate("/login");
   };
 
-  console.log("user en navbar:", user);
+  // console.log("user en navbar:", user);
   
 
   return (
@@ -96,7 +96,7 @@ export function Navbar() {
           className="d-flex ms-auto align-items-center gap-2 mt-2 mt-lg-0"
         >
           <span className="nav-item nav-link text-primary">
-            {user?.userName}
+            {user?.userName || user?.email }
           </span>
           {user ? (
             <button className="btn btn-outline-danger" onClick={handleLogout}>
