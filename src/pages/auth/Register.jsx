@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../../styles/home/login.css"
+import "../../styles/home/login.css";
 
 const Register = () => {
   const [userName, setUserName] = useState("");
@@ -15,22 +15,28 @@ const Register = () => {
     // VALIDA QUE EL TOKEN YA FUE COMPRADO
     try {
       const evalTokenRes = await axios.get(
-        `${import.meta.env.VITE_API_URL}/evaluationtokens/${evaluationToken}`
+        `${import.meta.env.VITE_API_URL}/tokens`
       );
-      if (!evalTokenRes.data) {
-        setMessage("El token no existe.");
+      const evaluationToken = evalTokenRes.data.tokens;
+      console.log("Datos de compra de tokens:", evaluationToken);
+
+      const foundToken = evaluationToken?.find(
+        (t) => t.evaluationToken === token
+      );
+
+      if (!foundToken) {
+        setMessage("No se encontró el token.");
         return;
       }
-    } catch {
-      setMessage("El token no existe.");
+    } catch (err) {
+      setMessage("Error al validar el token.");
+      console.error("Error al validar el token:", err);
       return;
     }
 
     // VALIDA QUE EL TOKEN NO HAYA SIDO USADO POR OTRO USUARIO
     try {
-      const usersRes = await axios.get(
-        `${import.meta.env.VITE_API_URL}/users`
-      );
+      const usersRes = await axios.get(`${import.meta.env.VITE_API_URL}/users`);
       const tokenUsed = usersRes.data.some(
         (user) => user.tokens && user.tokens.includes(token)
       );
@@ -49,14 +55,16 @@ const Register = () => {
       password,
       password2,
       token,
+      admin: false,
     };
-
+    console.log("Datos enviados al backend:", userData);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/register`,
         userData
       );
-      console.log("respuesta:", response);
+
+      console.log("respuesta del servidor:", response);
       setMessage("Usuario registrado con éxito!");
       // Reset form fields
       setUserName("");
@@ -96,7 +104,7 @@ const Register = () => {
           </div>
           <div>
             <label>Repetir Contraseña:</label>
-           <input
+            <input
               className="form-control"
               type="password"
               value={password2}
@@ -106,7 +114,7 @@ const Register = () => {
           </div>
           <div>
             <label>Ingrese un token*:</label>
-           <input
+            <input
               className="form-control add-token"
               type="text"
               placeholder=""
@@ -120,7 +128,9 @@ const Register = () => {
           </button>
         </form>
         {message && <p>{message}</p>} <br />
-        <p>*Puede adquirir sus tokens <a href="#">aquí</a></p>
+        <p>
+          *Puede adquirir sus tokens <a href="#">aquí</a>
+        </p>
       </div>
     </div>
   );
