@@ -21,22 +21,18 @@ export const TokenBox = () => {
     error: evaluationsError,
   } = useFetchData(`${import.meta.env.VITE_API_URL}/completevaluations`);
 
-  const {
-    data: usersData,
-    loading: usersLoading,
-    error: usersError,
-  } = useFetchData(`${import.meta.env.VITE_API_URL}/users`);
+  const { data: usersData, loading: usersLoading } = useFetchData(
+    `${import.meta.env.VITE_API_URL}/users`
+  );
 
   const { data: childData } = useFetchData(
     `${import.meta.env.VITE_API_URL}/childrenres`
   );
 
-  // console.log(`${import.meta.env.VITE_API_URL}/childrenres`);
-
   const navigate = useNavigate();
 
-  console.log("usersData:", usersData);
-  
+  // console.log("usersData:", usersData);
+  // console.log("user:", user);
 
   useEffect(() => {
     if (selectedToken) {
@@ -51,9 +47,19 @@ export const TokenBox = () => {
     }
   }, [selectedToken, tokensData, evaluationsData]);
 
-  const userEvaluationTokens = tokensData?.tokens.filter(
-    (token) => token.userId === user.id
-  );
+  // Verifica si el user.id existe en el usersData
+  const matchedUser = usersData?.find((u) => u._id === user.id);
+
+  // Si el user tiene un solo token
+  // const userEvaluationTokens = matchedUser ? [matchedUser.token] : [];
+
+  // Cruce de datos con evaluationToken
+  const userEvaluationTokens = matchedUser && tokensData?.tokens
+    ?tokensData.tokens.filter((token) =>
+    token.evaluationToken === matchedUser.token
+    )
+  :[];
+   
 
   useEffect(() => {
     if (selectedToken && childData) {
@@ -68,7 +74,8 @@ export const TokenBox = () => {
     }
   }, [selectedToken, childData]);
 
-  if (tokensLoading || evaluationsLoading) return <p>Loading...</p>;
+  if (tokensLoading || evaluationsLoading || usersLoading)
+    return <p>Loading...</p>;
   if (tokensError)
     return <p>Error loading tokens data: {tokensError.message}</p>;
   if (evaluationsError)
@@ -113,11 +120,16 @@ export const TokenBox = () => {
           <input type="text" placeholder="Token alfanumérico" className="add-token" />{" "}
           <button className="add-token-btn">Agregar</button>
         </div> */}
-        {userEvaluationTokens.length === 0 ? (
+
+        {!matchedUser ? (
+          <p>Usuario no válido</p>
+        ) : userEvaluationTokens.length === 0 ? (
           <p>No tiene tokens disponibles</p>
         ) : (
           <>
-            <p className="text-token">**** HAGA CLICK SOBRE EL TOKEN QUE VA A UTILIZAR ****</p>
+            <p className="text-token">
+              **** HAGA CLICK SOBRE EL TOKEN QUE VA A UTILIZAR ****
+            </p>
             <h2 className="code-title">Token</h2>
             <div className="radio-token-container">
               {userEvaluationTokens.map((token, index) => (
