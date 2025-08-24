@@ -57,7 +57,7 @@ const Register = () => {
       token,
       admin: false,
     };
-    console.log("Datos enviados al backend:", userData);
+    // console.log("Datos enviados al backend:", userData);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/register`,
