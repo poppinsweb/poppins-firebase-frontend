@@ -14,13 +14,13 @@ const Register = () => {
 
     // VALIDA QUE EL TOKEN YA FUE COMPRADO
     try {
-      const evalTokenRes = await axios.get(
+      const objetoEvaluationTokensRes = await axios.get(
         `${import.meta.env.VITE_API_URL}/tokens`
       );
-      const evaluationToken = evalTokenRes.data.tokens;
-      console.log("Datos de compra de tokens:", evaluationToken);
 
-      const foundToken = evaluationToken?.find(
+      const objEvaluationTokensData = objetoEvaluationTokensRes.data.tokens;
+
+      const foundToken = objEvaluationTokensData?.find(
         (t) => t.evaluationToken === token
       );
 
@@ -38,7 +38,7 @@ const Register = () => {
     try {
       const usersRes = await axios.get(`${import.meta.env.VITE_API_URL}/users`);
       const tokenUsed = usersRes.data.some(
-        (user) => user.tokens && user.tokens.includes(token)
+        (user) => user.token && user.token.includes(token)
       );
       if (tokenUsed) {
         setMessage("El token ya está vinculado a otro usuario.");
@@ -64,7 +64,11 @@ const Register = () => {
         userData
       );
 
-      console.log("respuesta del servidor:", response);
+      window.location.href = "/login";
+      // TODO>>>> ESTO DEBE CAMBIARSE A UN LOGUEO AUTOMATICO
+
+      // console.log("respuesta del servidor:", response);
+
       setMessage("Usuario registrado con éxito!");
       // Reset form fields
       setUserName("");
