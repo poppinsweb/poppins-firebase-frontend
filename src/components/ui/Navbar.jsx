@@ -63,21 +63,21 @@ export function Navbar() {
             {/* Enlaces para admin */}
             {user && user.admin && (
               <>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <NavLink className="nav-link" to="/crear">
                     Crear usuario
                   </NavLink>
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/lista">
                     Lista
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <NavLink className="nav-link" to="/token">
                     Token
                   </NavLink>
-                </li>
+                </li> */}
               </>
             )}
 
