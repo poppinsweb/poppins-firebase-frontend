@@ -25,6 +25,8 @@ const UserList = () => {
   useEffect(() => {
     if (usersData) {
       setUsers(usersData);
+      console.log(usersData);
+      
     }
   }, [usersData]);
 
@@ -38,7 +40,7 @@ const UserList = () => {
     if (tokenData) {
       setTokens(tokenData.tokens);
     }
-    console.log(tokenData);
+    // console.log(tokenData);
   }, [tokenData]);
 
   const handleDeleteUser = async (userId) => {
@@ -116,7 +118,7 @@ const UserList = () => {
           <tbody>
             {users.map((user) => (
               <tr key={user._id}>
-                <td>{user.email}</td>
+                <td>{user.email || user.userName}</td>
                 <td>{user.admin.toString()}</td>
                 <td>
                   <button
