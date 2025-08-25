@@ -31,7 +31,7 @@ export const TokenBox = () => {
 
   const navigate = useNavigate();
 
-  // console.log("usersData:", usersData);
+  console.log("usersData:", usersData);
   // console.log("user:", user);
 
   useEffect(() => {
@@ -50,16 +50,12 @@ export const TokenBox = () => {
   // Verifica si el user.id existe en el usersData
   const matchedUser = usersData?.find((u) => u._id === user.id);
 
-  // Si el user tiene un solo token
-  // const userEvaluationTokens = matchedUser ? [matchedUser.token] : [];
-
   // Cruce de datos con evaluationToken
   const userEvaluationTokens = matchedUser && tokensData?.tokens
     ?tokensData.tokens.filter((token) =>
     token.evaluationToken === matchedUser.token
     )
   :[];
-   
 
   useEffect(() => {
     if (selectedToken && childData) {

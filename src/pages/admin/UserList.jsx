@@ -2,31 +2,32 @@ import React, { useState, useEffect } from "react";
 import { useFetchData } from "../../services/hooks/useFetchData";
 
 const UserList = () => {
+  const [users, setUsers] = useState([]);
+  // const [children, setChildren] = useState([]);
+  const [tokens, setTokens] = useState([]);
+
   const {
     data: usersData,
     loading: usersLoading,
     error: usersError,
   } = useFetchData(`${import.meta.env.VITE_API_URL}/users`);
+
   // const {
   //   data: childrenData,
   //   loading: childrenLoading,
   //   error: childrenError,
   // } = useFetchData(`${import.meta.env.VITE_API_URL}/childrenres`);
+  
   const {
     data: tokenData,
     loading: tokenLoading,
     error: tokenError,
   } = useFetchData(`${import.meta.env.VITE_API_URL}/tokens`);
 
-  const [users, setUsers] = useState([]);
-  // const [children, setChildren] = useState([]);
-  const [tokens, setTokens] = useState([]);
-
   useEffect(() => {
     if (usersData) {
       setUsers(usersData);
       console.log(usersData);
-      
     }
   }, [usersData]);
 
@@ -97,7 +98,7 @@ const UserList = () => {
   //   }
   // };
 
-  if (usersLoading ||  tokenLoading) return <p>Loading...</p>;
+  if (usersLoading || tokenLoading) return <p>Loading...</p>;
   if (usersError) return <p>Error loading user data: {usersError.message}</p>;
   // if (childrenError)
   //   return <p>Error loading children data: {childrenError.message}</p>;
@@ -112,6 +113,7 @@ const UserList = () => {
             <tr>
               <th>Nombre de Usuario</th>
               <th>Admin</th>
+              <th>Tokens</th>
               <th>Eliminar</th>
             </tr>
           </thead>
@@ -119,7 +121,8 @@ const UserList = () => {
             {users.map((user) => (
               <tr key={user._id}>
                 <td>{user.email || user.userName}</td>
-                <td>{user.admin.toString()}</td>
+                <td>{user.admin.toString()}</td> 
+                <td>{user.token?.toString()}</td>
                 <td>
                   <button
                     className="btn btn-outline-danger"
