@@ -12,14 +12,13 @@ export function Home() {
         </section>
 
         <section className="info-encuesta-container text-block">
-          {" "}
           <h2 className="centered-title">
             <strong>Información Sobre la Encuesta</strong> <br />
           </h2>
-          La Encuesta de Hábitos e Independencia en la Rutina Diaria{" "}
+          La Encuesta de Hábitos e Independencia en la Rutina Diaria
           <FaRegCopyright
             style={{ fontSize: 10, marginLeft: -7, marginBottom: 5 }}
-          />{" "}
+          />
           se aplica con niños entre los 4 y 8 años y está deseñada para
           identificar tres aspectos:
           <ol>
@@ -36,13 +35,17 @@ export function Home() {
             </li>
           </ol>
           <p>
-            Para diligenciar la Encuesta debe adquirir un TOKEN{" "}
-            <a href="/#" className="link-buy">
+            Para diligenciar la Encuesta debe adquirir un TOKEN
+            <a
+              href="https://www.poppinseduca.com/product-page/encuesta"
+              target="_blank"
+              className="link-buy"
+            >
               AQUÍ
-            </a>{" "}
+            </a>
             que le permitirá hacer una evaluación inicial, y una de seguimiento,
             en un tiempo máximo de 6 meses. Si es la primera vez que diligencia
-            la encuesta, y ya adquirió el TOKEN, debe registrarse:{" "}
+            la encuesta, y ya adquirió el TOKEN, debe registrarse:
             <a href="/register" className="link-buy">
               AQUÍ
             </a>

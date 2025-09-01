@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { useFetchData } from "../../services/hooks/useFetchData";
+import ModalToken from "./ModalToken";
 import "../../styles/users/token.css";
 
 export const TokenBox = () => {
   const [selectedToken, setSelectedToken] = useState("");
   const [tokenUsageCount, setTokenUsageCount] = useState(0);
   const [selectedChild, setSelectedChild] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -111,6 +113,15 @@ export const TokenBox = () => {
           <p>No tiene tokens disponibles</p>
         ) : (
           <>
+          {/* --- Botón para abrir modal --- */}
+        <div className="btn-token">
+          <button
+            className="btn btn-outline-primary"
+            onClick={() => setShowModal(true)}
+          >
+            + Nuevo Token
+          </button>
+        </div>
             <p className="text-token">
               **** HAGA CLICK SOBRE EL TOKEN QUE VA A UTILIZAR ****
             </p>
@@ -172,6 +183,14 @@ export const TokenBox = () => {
           </button>
         </div>
       </div>
+      {/* --- Modal --- */}
+      {showModal && (
+        <ModalToken
+          onClose={() => setShowModal(false)}
+          refetchTokens={refetchTokens}
+          // refetchUsers={refetchUsers}
+        />
+      )}
     </>
   );
 };

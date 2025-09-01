@@ -10,7 +10,7 @@ export const PrivacityPage = () => {
       <ol>
         <li>
           <strong>Introducción</strong>
-          <p>
+          
             La presente Política de Tratamiento de Datos Personales tiene como
             objetivo establecer los principios y lineamientos que rigen la
             recolección, uso, almacenamiento y protección de los datos
@@ -21,11 +21,11 @@ export const PrivacityPage = () => {
             garantizar el respeto a los derechos de los menores de edad y de sus
             padres o tutores legales en relación con el tratamiento de sus datos
             personales.
-          </p>
+        
         </li>
         <li>
           <strong>Responsable del Tratamiento</strong>
-          <p>
+          
             La entidad responsable del tratamiento de los datos personales es{" "}
             <strong>PoppinsEduca</strong>, con domicilio en{" "}
             <strong>Cali, Colombia</strong>, teléfono{" "}
@@ -35,11 +35,11 @@ export const PrivacityPage = () => {
             datos personales se realice conforme a la normativa vigente y a los
             principios de legalidad, transparencia, acceso, calidad, seguridad y
             confidencialidad.
-          </p>
+        
         </li>
         <li>
           <strong>Finalidad del Tratamiento de los Datos</strong>
-          <p>
+          
             Los datos personales recolectados en la encuesta serán utilizados
             exclusivamente para las siguientes finalidades:
             <ul>
@@ -59,11 +59,11 @@ export const PrivacityPage = () => {
                 para la gestión de datos personales.
               </li>
             </ul>
-          </p>
+        
         </li>
         <li>
           <strong>Datos Personales Recogidos</strong>
-          <p>
+          
             Los datos personales que serán recolectados en el marco de esta
             encuesta incluyen, pero no se limitan a:
             <ul>
@@ -77,7 +77,7 @@ export const PrivacityPage = () => {
                 la vida diaria como baño, vestido, alimentación y sueño.
               </li>
             </ul>
-          </p>
+        
         </li>
         <li>
           <strong>Consentimiento de los Padres o Tutores</strong>
@@ -115,18 +115,18 @@ export const PrivacityPage = () => {
         </li>
         <li>
           <strong>Seguridad de los Datos</strong>
-          <p>
+          
             La entidad tomará todas las medidas técnicas, organizativas y
             administrativas necesarias para proteger los datos personales de los
             menores, con el fin de evitar el acceso no autorizado, la
             alteración, pérdida o divulgación de los mismos. Estas medidas
             incluyen el uso de sistemas de encriptación, controles de acceso,
             protocolos de seguridad y capacitación del personal.
-          </p>
+        
         </li>
         <li>
           <strong>Derechos de los Padres o Tutores y del Menor</strong>
-          <p>
+          
             En conformidad con la Ley 1581 de 2012, los padres o tutores del
             menor tienen derecho a:
             <ul>
@@ -154,31 +154,31 @@ export const PrivacityPage = () => {
                 en los casos establecidos por la ley.
               </li>
             </ul>
-          </p>
+        
         </li>
         <li>
           <strong>Plazo de Conservación de los Datos</strong>
-          <p>
+          
             Los datos personales recolectados se conservarán durante el tiempo
             necesario para cumplir con los fines de la encuesta y con las
             obligaciones legales. Una vez cumplidos estos fines, los datos serán
             eliminados de forma segura, salvo que exista una obligación legal de
             conservarlos por más tiempo.
-          </p>
+        
         </li>
         <li>
           <strong>Modificaciones de la Política</strong>
-          <p>
+          
             La entidad se reserva el derecho de modificar esta política en
             cualquier momento, de acuerdo con los cambios en la legislación
             vigente o en la propia práctica de tratamiento de datos. Cualquier
             modificación será informada de forma clara y oportuna a los padres o
             tutores.
-          </p>
+        
         </li>
         <li>
           <strong>Contacto y Consultas</strong>
-          <p>
+          
             Para cualquier consulta relacionada con esta política, el
             tratamiento de los datos personales o para ejercer los derechos
             establecidos, los padres o tutores pueden ponerse en contacto con:
@@ -197,10 +197,10 @@ export const PrivacityPage = () => {
                 <strong>Correo electrónico:</strong> poppinseduca@gmail.com
               </li>
             </ul>
-          </p>
+        
         </li>
       </ol>
-      <p className="actualization-date"><strong>Fecha de actualización de la política:</strong> Noviembre 22 de 2024</p>
+      <p className="actualization-date">Fecha de actualización de la política: 22/11/2024</p>
     </div>
   );
 };

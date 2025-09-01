@@ -133,7 +133,7 @@ const Register = () => {
         </form>
         {message && <p>{message}</p>} <br />
         <p>
-          *Puede adquirir sus tokens <a href="#">aquí</a>
+          *Para registrarse requiere un token. Puede adquirir sus tokens <a href="https://www.poppinseduca.com/product-page/encuesta" target="_blank">aquí</a>
         </p>
       </div>
     </div>
