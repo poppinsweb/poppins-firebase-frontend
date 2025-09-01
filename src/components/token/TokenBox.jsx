@@ -46,19 +46,44 @@ export const TokenBox = () => {
     }
   }, [selectedToken, tokensData, evaluationsData]);
 
-  // Compara el id del usuario logueado con los usuarios existentes extrayendo el objeto usuario logueado
+  // 1) Compara el id del usuario logueado con los usuarios existentes extrayendo el objeto usuario logueado
   const matchedUser = usersData?.find((u) => u._id === user.id);
 
   // Extraer los tokens asociados al usuario logueado
-  const userEvaluationTokens =
+  // const userEvaluationTokens =
+  //   matchedUser && tokensData?.tokens
+  //     ? tokensData.tokens.filter(
+  //         (token) =>
+  //           Array.isArray(matchedUser.token)
+  //             ? matchedUser.token.includes(token.evaluationToken) // si es array
+  //             : token.evaluationToken === matchedUser.token // compatibilidad con usuarios viejos
+  //       )
+  //     : [];
+
+  // 2) Tokens asociados según matchedUser (lógica del componente 1)
+  const tokensFromUserObject =
     matchedUser && tokensData?.tokens
-      ? tokensData.tokens.filter(
-          (token) =>
-            Array.isArray(matchedUser.token)
-              ? matchedUser.token.includes(token.evaluationToken) // si es array
-              : token.evaluationToken === matchedUser.token // compatibilidad con usuarios viejos
+      ? tokensData.tokens.filter((token) =>
+          Array.isArray(matchedUser.token)
+            ? matchedUser.token.includes(token.evaluationToken)
+            : token.evaluationToken === matchedUser.token
         )
       : [];
+
+  // 3) Tokens asociados por userId (lógica del componente 2)
+  const tokensByUserId =
+    tokensData?.tokens?.filter((token) => token.userId === user.id) || [];
+
+  // 4) Unir ambas colecciones, eliminando duplicados
+  const userEvaluationTokens = [
+    ...tokensFromUserObject,
+    ...tokensByUserId.filter(
+      (token) =>
+        !tokensFromUserObject.some(
+          (t) => t.evaluationToken === token.evaluationToken
+        )
+    ),
+  ];
 
   useEffect(() => {
     if (selectedToken && childData) {
@@ -113,15 +138,15 @@ export const TokenBox = () => {
           <p>No tiene tokens disponibles</p>
         ) : (
           <>
-          {/* --- Botón para abrir modal --- */}
-        <div className="btn-token">
-          <button
-            className="btn btn-outline-primary"
-            onClick={() => setShowModal(true)}
-          >
-            + Nuevo Token
-          </button>
-        </div>
+            {/* --- Botón para abrir modal --- */}
+            <div className="btn-token">
+              <button
+                className="btn btn-outline-primary"
+                onClick={() => setShowModal(true)}
+              >
+                + Nuevo Token
+              </button>
+            </div>
             <p className="text-token">
               **** HAGA CLICK SOBRE EL TOKEN QUE VA A UTILIZAR ****
             </p>
