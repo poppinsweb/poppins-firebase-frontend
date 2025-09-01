@@ -9,17 +9,7 @@ export const Footer = () => {
           <section className="mt-1 footer-links">
             <div className="row text-center d-flex justify-content-center pt-3">
               <div className="col-md-12">
-                <a href="/">PoppinsEduca.com</a>
-              </div>
-            </div>
-            <div className="row text-center d-flex justify-content-center pt-3">
-              <div className="col-md-12">
-                <a href="/contact">Contáctanos</a>
-              </div>
-            </div>
-            <div className="row text-center d-flex justify-content-center pt-3">
-              <div className="col-md-12">
-                <a href="/legal">Aviso Legal</a>
+                <a href="https://www.poppinseduca.com/ "target="_blank">Página principal</a>
               </div>
             </div>
             <div className="row text-center d-flex justify-content-center pt-3">

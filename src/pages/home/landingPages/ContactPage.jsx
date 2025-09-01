@@ -1,9 +1,9 @@
-import React from "react";
+// import React from "react";
 
-export const ContactPage = () => {
-  return (
-    <>
-      {/* HACER UN FORMULARIO */}
-    </>
-  );
-};
+// export const ContactPage = () => {
+//   return (
+//     <>
+//       {/* HACER UN FORMULARIO */}
+//     </>
+//   );
+// };

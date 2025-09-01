@@ -1,0 +1,51 @@
+/* Fondo oscuro */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); /* semitransparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999; /* aseguramos que esté por encima */
+}
+
+/* Caja del modal */
+.custom-modal {
+  background: #fff;
+  border-radius: 12px;
+  max-width: 450px;
+  width: 95%;
+  padding: 24px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: fadeInScale 0.25s ease-in-out;
+}
+
+/* Animación suave */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Botones dentro del modal */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}

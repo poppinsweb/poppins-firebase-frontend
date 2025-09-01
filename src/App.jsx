@@ -9,7 +9,7 @@ import UserRoutes from "./routes/UserRoutes";
 import PrivateRoute from "./routes/PrivateRoute";
 import { PrivacityPage } from "./pages/home/landingPages/footerPages/PrivacityPage";
 import { CopyrightPage } from "./pages/home/landingPages/footerPages/CopyrightPage";
-import { ContactPage } from "./pages/home/landingPages/ContactPage";
+// import { ContactPage } from "./pages/home/landingPages/ContactPage";
 
 export default function App() {
   const { user } = useAuth();
@@ -27,7 +27,7 @@ export default function App() {
         <Route path="/login" element={<PrivateRoute element={<LoginPage />} redirectTo="/" />} />
         <Route path="/privacity" element={<PrivacityPage />} />
         <Route path="/legal" element={<CopyrightPage />} />
-        <Route path="/contact" element={<ContactPage />} />
+        {/* <Route path="/contact" element={<ContactPage />} /> */}
         <Route path="/copyright" element={<CopyrightPage />} />
         <Route path="/Register" element={<PrivateRoute element={<Register />} redirectTo="/" />} />
       </Routes>

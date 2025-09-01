@@ -22,7 +22,7 @@ export function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <NavLink className="navbar-brand nav-link" to="/">PoppinsEduca</NavLink>
+        <NavLink className="navbar-brand nav-link" to="/">Encuesta</NavLink>
         {/* ESTE TITULO PUEDE DEVOLVER AL USUARIO A LA PAGINA WEB */}
         <button
           className="navbar-toggler"
@@ -73,11 +73,11 @@ export function Navbar() {
                     Lista
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <NavLink className="nav-link" to="/token">
                     Token
                   </NavLink>
-                </li>
+                </li> */}
               </>
             )}
 
