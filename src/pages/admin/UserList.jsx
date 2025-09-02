@@ -17,12 +17,21 @@ const UserList = () => {
   //   loading: childrenLoading,
   //   error: childrenError,
   // } = useFetchData(`${import.meta.env.VITE_API_URL}/childrenres`);
-  
+
   const {
     data: tokenData,
     loading: tokenLoading,
     error: tokenError,
   } = useFetchData(`${import.meta.env.VITE_API_URL}/tokens`);
+
+  // Obtiene el usuario asociado a un token específico
+  const getUserByToken = (evaluationToken) => {
+    return users.find((u) =>
+      Array.isArray(u.token)
+        ? u.token.includes(evaluationToken)
+        : u.token === evaluationToken
+    );
+  };
 
   useEffect(() => {
     if (usersData) {
@@ -44,32 +53,40 @@ const UserList = () => {
     // console.log(tokenData);
   }, [tokenData]);
 
-  const handleDeleteUser = async (userId) => {
-    const confirmed = window.confirm(
-      "¿Estás seguro de que deseas eliminar este usuario?"
-    );
-    if (!confirmed) return;
+  // const formatUserTokens = (tokens) => {
+  //   if (!tokens) return "No tiene tokens";
+  //   if (Array.isArray (tokens)) return tokens.join(", ");
+  //   return tokens;
+  // };
 
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/delete-user/${userId}`,
-        {
-          method: "DELETE",
-        }
-      );
+  // BORRAR USUARIO. LO COMENTO PROVISIONALMENTE
+  // const handleDeleteUser = async (userId) => {
+  //   const confirmed = window.confirm(
+  //     "¿Estás seguro de que deseas eliminar este usuario?"
+  //   );
+  //   if (!confirmed) return;
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Error eliminando usuario");
-      }
+  //   try {
+  //     const response = await fetch(
+  //       `${import.meta.env.VITE_API_URL}/delete-user/${userId}`,
+  //       {
+  //         method: "DELETE",
+  //       }
+  //     );
 
-      // Eliminar usuario de la lista local
-      setUsers((prevUsers) => prevUsers.filter((user) => user._id !== userId));
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+  //     if (!response.ok) {
+  //       const errorData = await response.json();
+  //       throw new Error(errorData.message || "Error eliminando usuario");
+  //     }
 
+  //     // Eliminar usuario de la lista local
+  //     setUsers((prevUsers) => prevUsers.filter((user) => user._id !== userId));
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //   }
+  // };
+
+  // LISTA DE NIÑOS. LO COMENTO PROVISIONALMENTE
   // const handleDeleteChild = async (childId) => {
   //   const confirmed = window.confirm(
   //     "¿Estás seguro de que deseas eliminar este niño?"
@@ -114,23 +131,35 @@ const UserList = () => {
               <th>Nombre de Usuario</th>
               <th>Admin</th>
               <th>Tokens</th>
-              <th>Eliminar</th>
+              {/* <th>Eliminar</th> */}
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
               <tr key={user._id}>
                 <td>{user.email || user.userName}</td>
-                <td>{user.admin.toString()}</td> 
-                <td>{user.token?.toString()}</td>
+                <td>{user.admin.toString()}</td>
                 <td>
+                  {Array.isArray(user.token) ? (
+                    user.token.map((t, index) => (
+                      <span key={index} className="badge bg-primary me-2">
+                        {t}
+                      </span>
+                    ))
+                  ) : user.token ? (
+                    <span className="badge bg-secondary">{user.token}</span>
+                  ) : (
+                    "—"
+                  )}
+                </td>
+                {/* <td>
                   <button
                     className="btn btn-outline-danger"
                     onClick={() => handleDeleteUser(user._id)}
                   >
                     Borrar
                   </button>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>
@@ -143,16 +172,21 @@ const UserList = () => {
             <tr>
               <th>Token</th>
               <th>Email con el que se compró el Token</th>
+              <th>Usado por</th>
             </tr>
           </thead>
           <tbody>
             {Array.isArray(tokens) &&
-              tokens.map((token) => (
-                <tr key={token._id}>
-                  <td>{token.evaluationToken}</td>
-                  <td>{token.email}</td>
-                </tr>
-              ))}
+              tokens.map((token) => {
+                const user = getUserByToken(token.evaluationToken);
+                return (
+                  <tr key={token._id}>
+                    <td>{token.evaluationToken}</td>
+                    <td>{token.email}</td>
+                    <td>{user ? user.email || user.userName : "No"}</td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
