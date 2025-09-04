@@ -20,8 +20,8 @@ const ModalToken = ({ onClose, refetchTokens, refetchUsers }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-backdrop">
+      <div className="custom-modal">
         <h3>Agregar Token</h3>
         <input
           type="text"
