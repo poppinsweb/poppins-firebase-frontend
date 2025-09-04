@@ -57,8 +57,8 @@ export const InfoToken = () => {
                 <li>Elija el TOKEN que ya contiene los datos del niño</li>
                 <li>Presione el botón "Ir a Encuesta"</li>
                 <li>
-                  Por favor disponga de aproximadamente 20 a 30 minutos para
-                  diligenciar todas las preguntas (51 en total)
+                  Por favor disponga de aproximadamente 10 minutos para
+                  diligenciar todas las preguntas (50 en total)
                 </li>
               </ol>
             </div>
