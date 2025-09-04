@@ -36,7 +36,7 @@ const UserList = () => {
   useEffect(() => {
     if (usersData) {
       setUsers(usersData);
-      console.log(usersData);
+      // console.log(usersData);
     }
   }, [usersData]);
 
