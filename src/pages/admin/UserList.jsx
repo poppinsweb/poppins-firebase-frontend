@@ -183,7 +183,7 @@ const UserList = () => {
                   <tr key={token._id}>
                     <td>{token.evaluationToken}</td>
                     <td>{token.email}</td>
-                    <td>{user ? user.email || user.userName : "No"}</td>
+                    <td>{user ? user.email || user.userName : "No usado"}</td>
                   </tr>
                 );
               })}
