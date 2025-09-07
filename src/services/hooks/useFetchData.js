@@ -1,27 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 
 const useFetchData = (endpoint) => {
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async() => {
-      try {
-        setLoading(true);
-        const request = await axios.get(endpoint);
-        setData(request.data);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
+  // Función de carga reutilizable
+  const fetchData = useCallback(async () => {
+    try {
+      setLoading(true);
+      const request = await axios.get(endpoint);
+      setData(request.data);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
   }, [endpoint]);
-  
-  return { data, loading, error };
+
+  // Se ejecuta al montar el componente y cada vez que cambie `endpoint`
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  // Retorna también refetch
+  return { data, loading, error, refetch: fetchData };
 };
 
-export {useFetchData};
+export { useFetchData };

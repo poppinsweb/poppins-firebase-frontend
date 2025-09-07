@@ -26,9 +26,10 @@ export const TokenBox = () => {
     error: evaluationsError,
   } = useFetchData(`${import.meta.env.VITE_API_URL}/completevaluations`);
 
-  const { data: usersData, loading: usersLoading } = useFetchData(
-    `${import.meta.env.VITE_API_URL}/users`
-  );
+  const {
+    data: usersData,
+    loading: usersLoading,
+  } = useFetchData(`${import.meta.env.VITE_API_URL}/users`);
 
   const { data: childData } = useFetchData(
     `${import.meta.env.VITE_API_URL}/childrenres`
@@ -213,7 +214,7 @@ export const TokenBox = () => {
         <ModalToken
           onClose={() => setShowModal(false)}
           refetchTokens={refetchTokens}
-          // refetchUsers={refetchUsers}
+          userId={user.id}
         />
       )}
     </>

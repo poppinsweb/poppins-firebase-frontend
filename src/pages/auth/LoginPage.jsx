@@ -16,10 +16,14 @@ const LoginPage = () => {
 
     try {
       const successLogin = await login(userName, password);
-        setMessage("Login successful");
+      if (successLogin){
+        setMessage("Login exitoso");
         setUserName("");
         setPassword("");
         navigate('/token')
+      } else {
+        setMessage("Error de autenticación. Verifica tus credenciales o comunícate con el administrador.");
+      }
     } catch (error) {
       setMessage("Failed to login");
       console.error("Error:", error);

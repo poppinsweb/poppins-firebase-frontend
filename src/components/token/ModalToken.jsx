@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../../styles/users/modal.css";
 
-const ModalToken = ({ onClose, refetchTokens, refetchUsers }) => {
+const ModalToken = ({ onClose, userId, refetchTokens }) => {
   const [newToken, setNewToken] = useState("");
   const [error, setError] = useState("");
 
   const handleAddToken = async () => {
     try {
       setError("");
-      await axios.post(`${import.meta.env.VITE_API_URL}/tokens/${newToken}/use`);
-      await refetchTokens(); // refresca lista de tokens
-      await refetchUsers();  // refresca datos de usuarios
+      await axios.put(`${import.meta.env.VITE_API_URL}/update-user/${userId}/add-token`,
+      { token:newToken}
+    );
+      await refetchTokens(); // Refresca la lista de tokens
       onClose();
     } catch (err) {
       console.error("Error al agregar token:", err);
@@ -20,8 +21,8 @@ const ModalToken = ({ onClose, refetchTokens, refetchUsers }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-backdrop">
+      <div className="custom-modal">
         <h3>Agregar Token</h3>
         <input
           type="text"
