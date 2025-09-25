@@ -24,12 +24,12 @@ export default function App() {
       )}
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<PrivateRoute element={<LoginPage />} redirectTo="/" />} />
+        <Route path="/login" element={<PrivateRoute element={<LoginPage />} redirectTo="/token" />} />
         <Route path="/privacity" element={<PrivacityPage />} />
         <Route path="/legal" element={<CopyrightPage />} />
         {/* <Route path="/contact" element={<ContactPage />} /> */}
         <Route path="/copyright" element={<CopyrightPage />} />
-        <Route path="/Register" element={<PrivateRoute element={<Register />} redirectTo="/" />} />
+        <Route path="/Register" element={<PrivateRoute element={<Register />} redirectTo="/login" />} />
       </Routes>
     </>
   );

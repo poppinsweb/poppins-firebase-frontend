@@ -40,6 +40,12 @@
 @media (min-width: 1200px) {
 .main-container {
   flex-direction: column;
+}
+
+.badge {
+  font-size: 0.8rem;
+  padding: 10px;
+  margin: 5px;
 }}
 
 /* LARGER SCREEN */
