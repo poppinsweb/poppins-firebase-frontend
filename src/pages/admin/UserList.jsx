@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useFetchData } from "../../services/hooks/useFetchData";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
-  // const [children, setChildren] = useState([]);
   const [tokens, setTokens] = useState([]);
+  const [sortConfigUsers, setSortConfigUsers] = useState({ key: null, direction: "asc" });
+  const [sortConfigTokens, setSortConfigTokens] = useState({ key: null, direction: "asc" });
 
   const {
     data: usersData,
@@ -12,19 +13,12 @@ const UserList = () => {
     error: usersError,
   } = useFetchData(`${import.meta.env.VITE_API_URL}/users`);
 
-  // const {
-  //   data: childrenData,
-  //   loading: childrenLoading,
-  //   error: childrenError,
-  // } = useFetchData(`${import.meta.env.VITE_API_URL}/childrenres`);
-
   const {
     data: tokenData,
     loading: tokenLoading,
     error: tokenError,
   } = useFetchData(`${import.meta.env.VITE_API_URL}/tokens`);
 
-  // Obtiene el usuario asociado a un token específico
   const getUserByToken = (evaluationToken) => {
     return users.find((u) =>
       Array.isArray(u.token)
@@ -36,31 +30,87 @@ const UserList = () => {
   useEffect(() => {
     if (usersData) {
       setUsers(usersData);
-      // console.log(usersData);
     }
   }, [usersData]);
-
-  // useEffect(() => {
-  //   if (childrenData) {
-  //     setChildren(childrenData);
-  //   }
-  // }, [childrenData]);
 
   useEffect(() => {
     if (tokenData) {
       setTokens(tokenData.tokens);
     }
-    // console.log(tokenData);
   }, [tokenData]);
 
-// AQUI VA EL CODIGO 2 COMENTADO ABAJO
+  // 🔥 Ordenar usuarios
+  const sortedUsers = useMemo(() => {
+    if (!sortConfigUsers.key) return users;
+
+    return [...users].sort((a, b) => {
+      let aValue = a[sortConfigUsers.key];
+      let bValue = b[sortConfigUsers.key];
+
+      if (typeof aValue === "string") aValue = aValue.toLowerCase();
+      if (typeof bValue === "string") bValue = bValue.toLowerCase();
+
+      if (aValue < bValue) return sortConfigUsers.direction === "asc" ? -1 : 1;
+      if (aValue > bValue) return sortConfigUsers.direction === "asc" ? 1 : -1;
+      return 0;
+    });
+  }, [users, sortConfigUsers]);
+
+  // 🔥 Ordenar tokens
+  const sortedTokens = useMemo(() => {
+    if (!sortConfigTokens.key) return tokens;
+
+    return [...tokens].sort((a, b) => {
+      let aValue;
+      let bValue;
+
+      if (sortConfigTokens.key === "usadoPor") {
+        const userA = getUserByToken(a.evaluationToken);
+        const userB = getUserByToken(b.evaluationToken);
+        aValue = userA ? userA.email || userA.userName : "";
+        bValue = userB ? userB.email || userB.userName : "";
+      } else {
+        aValue = a[sortConfigTokens.key];
+        bValue = b[sortConfigTokens.key];
+      }
+
+      if (typeof aValue === "string") aValue = aValue.toLowerCase();
+      if (typeof bValue === "string") bValue = bValue.toLowerCase();
+
+      if (aValue < bValue) return sortConfigTokens.direction === "asc" ? -1 : 1;
+      if (aValue > bValue) return sortConfigTokens.direction === "asc" ? 1 : -1;
+      return 0;
+    });
+  }, [tokens, sortConfigTokens, users]);
+
+  // 🔥 Handlers
+  const handleSortUsers = (key) => {
+    setSortConfigUsers((prev) => {
+      if (prev.key === key) {
+        return { key, direction: prev.direction === "asc" ? "desc" : "asc" };
+      }
+      return { key, direction: "asc" };
+    });
+  };
+
+  const handleSortTokens = (key) => {
+    setSortConfigTokens((prev) => {
+      if (prev.key === key) {
+        return { key, direction: prev.direction === "asc" ? "desc" : "asc" };
+      }
+      return { key, direction: "asc" };
+    });
+  };
+
+  // 🔥 Función para renderizar flechas
+  const renderArrow = (config, key) => {
+    if (config.key !== key) return "▲▼"; // siempre visibles pero grises si no está activa
+    return config.direction === "asc" ? "▲" : "▼";
+  };
 
   if (usersLoading || tokenLoading) return <p>Loading...</p>;
   if (usersError) return <p>Error loading user data: {usersError.message}</p>;
-  // if (childrenError)
-  //   return <p>Error loading children data: {childrenError.message}</p>;
   if (tokenError) return <p>Error loading token data: {tokenError.message}</p>;
-
   return (
     <>
       <div>
@@ -68,14 +118,17 @@ const UserList = () => {
         <table className="table table-hover table-striped">
           <thead>
             <tr>
-              <th>Nombre de Usuario</th>
-              <th>Admin</th>
+              <th onClick={() => handleSortUsers("email")} style={{ cursor: "pointer" }}>
+                Nombre de Usuario {renderArrow(sortConfigUsers, "email")}
+              </th>
+              <th onClick={() => handleSortUsers("admin")} style={{ cursor: "pointer" }}>
+                Admin {renderArrow(sortConfigUsers, "admin")}
+              </th>
               <th>Tokens</th>
-              {/* <th>Eliminar</th> */}
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {sortedUsers.map((user) => (
               <tr key={user._id}>
                 <td>{user.email || user.userName}</td>
                 <td>{user.admin.toString()}</td>
@@ -92,14 +145,6 @@ const UserList = () => {
                     "—"
                   )}
                 </td>
-                {/* <td>
-                  <button
-                    className="btn btn-outline-danger"
-                    onClick={() => handleDeleteUser(user._id)}
-                  >
-                    Borrar
-                  </button>
-                </td> */}
               </tr>
             ))}
           </tbody>
@@ -110,14 +155,20 @@ const UserList = () => {
         <table className="table table-hover table-striped">
           <thead>
             <tr>
-              <th>Token</th>
-              <th>Email con el que se compró el Token</th>
-              <th>Usado por</th>
+              <th onClick={() => handleSortTokens("evaluationToken")} style={{ cursor: "pointer" }}>
+                Token {renderArrow(sortConfigTokens, "evaluationToken")}
+              </th>
+              <th onClick={() => handleSortTokens("email")} style={{ cursor: "pointer" }}>
+                Email con el que se compró el Token {renderArrow(sortConfigTokens, "email")}
+              </th>
+              <th onClick={() => handleSortTokens("usadoPor")} style={{ cursor: "pointer" }}>
+                Usado por {renderArrow(sortConfigTokens, "usadoPor")}
+              </th>
             </tr>
           </thead>
           <tbody>
-            {Array.isArray(tokens) &&
-              tokens.map((token) => {
+            {Array.isArray(sortedTokens) &&
+              sortedTokens.map((token) => {
                 const user = getUserByToken(token.evaluationToken);
                 return (
                   <tr key={token._id}>
@@ -130,114 +181,8 @@ const UserList = () => {
           </tbody>
         </table>
       </div>
-      {/* AQUI VA EL CODIGO 1 COMENTADO ABAJO */}
     </>
   );
 };
 
 export default UserList;
-
-
-// CODIGO 1
-{/* <div>
-        <h2>NIÑOS</h2>
-        {children.length > 0 ? (
-          <table className="table table-hover table-striped">
-            <thead>
-              <tr>
-                <th>Token</th>
-                <th>NOMBRES</th>
-                <th>APELLIDOS</th>
-                <th>SEXO</th>
-                <th>GRADO</th>
-                <th>Eliminar</th>
-              </tr>
-            </thead>
-            <tbody>
-              {children.map((child) => (
-                <tr key={child._id}>
-                  <td>{child.evaluationtoken}</td>
-                  <td>{child.firstName}</td>
-                  <td>{child.lastName}</td>
-                  <td>{child.responses[0].value}</td>
-                  <td>{child.responses[3].value}</td>
-                  <td>
-                    <button
-                      className="btn btn-outline-danger"
-                      onClick={() => handleDeleteChild(child._id)}
-                    >
-                      Borrar
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          "No hay Niños"
-        )}
-      </div> */}
-
-
-// CODIGO 2
-  // const formatUserTokens = (tokens) => {
-  //   if (!tokens) return "No tiene tokens";
-  //   if (Array.isArray (tokens)) return tokens.join(", ");
-  //   return tokens;
-  // };
-
-  // BORRAR USUARIO. LO COMENTO PROVISIONALMENTE
-  // const handleDeleteUser = async (userId) => {
-  //   const confirmed = window.confirm(
-  //     "¿Estás seguro de que deseas eliminar este usuario?"
-  //   );
-  //   if (!confirmed) return;
-
-  //   try {
-  //     const response = await fetch(
-  //       `${import.meta.env.VITE_API_URL}/delete-user/${userId}`,
-  //       {
-  //         method: "DELETE",
-  //       }
-  //     );
-
-  //     if (!response.ok) {
-  //       const errorData = await response.json();
-  //       throw new Error(errorData.message || "Error eliminando usuario");
-  //     }
-
-  //     // Eliminar usuario de la lista local
-  //     setUsers((prevUsers) => prevUsers.filter((user) => user._id !== userId));
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //   }
-  // };
-
-  // LISTA DE NIÑOS. LO COMENTO PROVISIONALMENTE
-  // const handleDeleteChild = async (childId) => {
-  //   const confirmed = window.confirm(
-  //     "¿Estás seguro de que deseas eliminar este niño?"
-  //   );
-  //   if (!confirmed) return;
-
-  //   try {
-  //     const response = await fetch(
-  //       `${import.meta.env.VITE_API_URL}/delete-child/${childId}`,
-  //       {
-  //         method: "DELETE",
-  //       }
-  //     );
-
-  //     if (!response.ok) {
-  //       const errorData = await response.json();
-  //       throw new Error(errorData.message || "Error eliminando niño");
-  //     }
-
-  //     // Eliminar niño de la lista local
-  //     setChildren((prevChildren) =>
-  //       prevChildren.filter((child) => child._id !== childId)
-  //     );
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //   }
-  // };
