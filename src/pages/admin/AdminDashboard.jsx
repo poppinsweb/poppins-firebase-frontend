@@ -8,7 +8,7 @@ export default function AdminDashboard() {
         <div className="">
         </div>
         <div className="">
-          <AdminQuestionFilter />
+          {/* ESTO SE TRAE DESDE EL BACKEND DONDE SE HACE UNA CONSULTA COMPLEJA Y VARIAS VALIDACIONES DE SEGURIDAD */}
         </div>
         <button className="btn btn-primary filter-btn btn-color">
           Filtrar
