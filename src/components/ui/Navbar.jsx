@@ -16,9 +16,6 @@ export function Navbar() {
     navigate("/login");
   };
 
-  // console.log("user en navbar:", user);
-  
-
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">

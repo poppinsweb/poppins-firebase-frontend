@@ -1,5 +1,6 @@
 import "../../styles/home/footer.css";
 import { FaInstagram, FaWhatsapp, FaRegEnvelope, FaHandHoldingHeart } from "react-icons/fa";
+import alecode2 from "../../styles/images/alecode2.png";
 
 export const Footer = () => {
   return (
@@ -44,7 +45,7 @@ export const Footer = () => {
               rel="noopener noreferrer"
             >
               <FaRegEnvelope alt="Link-mailto" className="social" />
-            </a> <p className="memark">webapp <FaHandHoldingHeart /> by alecode</p>
+            </a> <p className="memark">webapp <img src={alecode2} alt="Logo de desarrolladora" className="logo-developer" /> by alecode</p>
           </section>
         </div>
       </footer>
