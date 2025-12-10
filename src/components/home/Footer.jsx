@@ -1,4 +1,4 @@
-import "../../styles/home/footer.css";
+// import "../../styles/home/footer.css";
 import { FaInstagram, FaWhatsapp, FaRegEnvelope, FaHandHoldingHeart } from "react-icons/fa";
 import alecode2 from "../../styles/images/alecode2.png";
 
