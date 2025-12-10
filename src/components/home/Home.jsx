@@ -4,14 +4,32 @@ import { FaRegCopyright } from "react-icons/fa";
 import { Footer } from "./Footer";
 
 export function Home() {
+  // función para hacer scroll suave
+  const scrollToInfo = () => {
+    const section = document.getElementById("info-encuesta");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <div className="container">
+        {/* Logo arriba */}
         <section className="logo-container">
-          <img src={umbrellafirst} className="logo" alt="umbrella-logo" />
+          <img
+            src={umbrellafirst}
+            className="logo"
+            alt="umbrella-logo"
+            onClick={scrollToInfo} // evento click
+          />
         </section>
 
-        <section className="info-encuesta-container text-block">
+        {/* Contenedor de texto con id para el scroll */}
+        <section
+          id="info-encuesta"
+          className="info-encuesta-container text-block"
+        >
           <h2 className="centered-title">
             <strong>Información Sobre la Encuesta</strong> <br />
           </h2>
@@ -19,7 +37,7 @@ export function Home() {
           <FaRegCopyright
             style={{ fontSize: 10, marginLeft: -7, marginBottom: 5 }}
           />
-          se aplica con niños entre los 4 y 8 años y está deseñada para
+          se aplica con niños entre los 4 y 8 años y está diseñada para
           identificar tres aspectos:
           <ol>
             <li className="list-item">
@@ -39,16 +57,20 @@ export function Home() {
             <a
               href="https://www.poppinseduca.com/product-page/encuesta"
               target="_blank"
+              rel="noopener noreferrer"
               className="link-buy"
             >
+              {" "}
               AQUÍ
-            </a>
-            que le permitirá hacer una evaluación inicial, y una de seguimiento,
+            </a>,
+            el cual le permitirá hacer una evaluación inicial y una de seguimiento,
             en un tiempo máximo de 6 meses. Si es la primera vez que diligencia
             la encuesta, y ya adquirió el TOKEN, debe registrarse:
-            <a href="/register" className="link-buy">
+            <a href="/register" className="link-buy"
+            >
+              {" "}
               AQUÍ
-            </a>
+            </a>.
           </p>
           <p>
             Duración de la Encuesta: aproximadamente 10 minutos. Tenga en cuenta
@@ -67,6 +89,7 @@ export function Home() {
           </p>
         </section>
       </div>
+
       <section>
         <Footer />
       </section>

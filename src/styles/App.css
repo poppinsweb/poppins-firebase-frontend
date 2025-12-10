@@ -1,34 +1,56 @@
-#root {
-  margin: 0 auto;
-  text-align: center;
-}
-
 .btn-color {
-  background-color: #543c80;
+  background-color: var(--primary-heading);
   border-radius: 20px;
   border: #198754;
   width: 160px;
   height: 45px;
   color: #fff;  
+  transition: var(--transition);
+  
 }   
 
-/*pendiente la seleccion del color para el hover de los botones*/
 .btn-color:hover {
   background: #198754;
   color: #ffff;
-  cursor: url(https://cur.cursors-4u.net/games/gam-4/gam327.cur), auto !important; 
 }
 
-.btn:hover {
-  cursor: url(https://cur.cursors-4u.net/games/gam-4/gam327.cur), auto !important; 
+.nav-link {
+  font-size: 18px;
+  transition: var(--transition);
 }
 
 .nav-link:hover {
-  cursor: url(https://cur.cursors-4u.net/games/gam-4/gam327.cur), auto !important; 
+  color: var(--accent);
+  font-size: 20px;
 }
 
-h1, h2, h3 {
-  color: #543c80;
+.navbar-title-container {
+  color: var(--primary-heading);
+  display: flex;
+  flex-wrap: wrap;      
+  line-height: 1.4;      
+  max-width: 80%;       
+  margin: 0 auto;      
+  text-align: center;
 }
+
+/* Tablets */
+@media (min-width: 768px) {
+  .navbar-title-container {
+    font-size: 20px;
+    max-width: 60%;     
+  }
+}
+
+/* Pantallas grandes */
+@media (min-width: 1200px) {
+  .navbar-title-container {
+    font-size: 20px;
+    max-width: 300px;   
+    line-height: 1.5;
+    text-align: left;   
+  }
+}
+
 
 

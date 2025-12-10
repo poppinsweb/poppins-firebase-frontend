@@ -3,7 +3,41 @@
   cursor: url(https://cur.cursors-4u.net/others/oth-8/oth737.cur), auto !important; 
 }
 
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
 @media (min-width: 768px){
 .container, .container-md, .container-sm {
     max-width: 100%}
+}
+
+/* -------------------- BASE STYLES -------------------- */
+:root {
+  --primary-bg: #6870a1;
+  --secondary-bg: #cbc6dd;
+  --text-color: #565555;
+  --text-light: #e1ebfb;
+  --accent: #2590e7;
+  --hover-accent: #363678;
+  --hover-social: #e857f5;
+  --primary-heading: #543c80;
+  --transition: all 0.3s ease-in-out;
+}
+
+/* Tipografía base */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  background-color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1, h2, h3 {
+  color: var(--primary-heading);
 }

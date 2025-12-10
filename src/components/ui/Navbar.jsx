@@ -16,14 +16,12 @@ export function Navbar() {
     navigate("/login");
   };
 
-  // console.log("user en navbar:", user);
-  
-
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <NavLink className="navbar-brand nav-link" to="/">Encuesta</NavLink>
-        {/* ESTE TITULO PUEDE DEVOLVER AL USUARIO A LA PAGINA WEB */}
+        <div className="navbar-title-container">
+          <p className="titulo-navbar"> Encuesta De Hábitos e Independencia </p>
+        </div>
         <button
           className="navbar-toggler"
           type="button"
@@ -47,7 +45,7 @@ export function Navbar() {
             {/* Enlaces para usuarios no logueados */}
             {!user && (
               <>
-              <li className="nav-item">
+                <li className="nav-item">
                   <NavLink className="nav-link" to="/register">
                     Registrarse
                   </NavLink>
@@ -92,21 +90,19 @@ export function Navbar() {
               </>
             )}
           </ul>
-        <div
-          className="d-flex ms-auto align-items-center gap-2 mt-2 mt-lg-0"
-        >
-          <span className="nav-item nav-link text-primary">
-            {user?.userName || user?.email }
-          </span>
-          {user ? (
-            <button className="btn btn-outline-danger" onClick={handleLogout}>
-              Logout
-            </button>
-          ) : (
-            <button className="btn btn-outline-success" onClick={handleLogIn}>
-              Login
-            </button>
-          )}
+          <div className="d-flex ms-auto align-items-center gap-2 mt-2 mt-lg-0">
+            <span className="nav-item nav-link text-primary">
+              {user?.userName || user?.email}
+            </span>
+            {user ? (
+              <button className="btn btn-outline-danger" onClick={handleLogout}>
+                Logout
+              </button>
+            ) : (
+              <button className="btn btn-outline-success" onClick={handleLogIn}>
+                Login
+              </button>
+            )}
           </div>
         </div>
       </div>
