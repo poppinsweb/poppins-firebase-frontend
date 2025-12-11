@@ -14,9 +14,16 @@
   color: #ffff;
 }
 
+.container-fluid {
+  background-color: var(--secondary-bg);
+  box-shadow: var(--box-shadow);
+  padding: 10px 20px;
+}
+
 .nav-link {
   font-size: 18px;
   transition: var(--transition);
+  color: var(--text-color);
 }
 
 .nav-link:hover {
@@ -25,13 +32,19 @@
 }
 
 .navbar-title-container {
-  color: var(--primary-heading);
   display: flex;
   flex-wrap: wrap;      
   line-height: 1.4;      
   max-width: 80%;       
   margin: 0 auto;      
   text-align: center;
+}
+
+.titulo-navbar {
+  font-size: 18px;  
+  font-weight: 600; 
+  margin-right: 25px; 
+  color: var(--primary-heading);
 }
 
 /* Tablets */

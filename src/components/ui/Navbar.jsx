@@ -20,7 +20,7 @@ export function Navbar() {
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
         <div className="navbar-title-container">
-          <p className="titulo-navbar"> Encuesta De Hábitos e Independencia </p>
+          <p className="titulo-navbar"> Encuesta </p>
         </div>
         <button
           className="navbar-toggler"

@@ -32,7 +32,7 @@ const LoginPage = () => {
   return (
     <div className="page-container">
       <div className="login-card">
-        <h2 className="title-login">Ingreso de Usuario</h2>
+        <h2 className="title-login">Login</h2>
         <form onSubmit={handleLogin}>
           <div>
             <label>Nombre de Usuario:</label>

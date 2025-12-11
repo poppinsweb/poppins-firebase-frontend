@@ -83,8 +83,8 @@ const Register = () => {
 
   return (
     <div className="page-container">
-      <div className="register-card">
-        <h2 className="title-register">Registro de Usuarios</h2>
+      <div className="login-card">
+        <h2 className="title-login">Registro</h2>
         <form onSubmit={handleRegister}>
           <div>
             <label>Nombre de Usuario:</label>
