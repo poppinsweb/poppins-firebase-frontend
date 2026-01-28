@@ -35,7 +35,7 @@ export function Home() {
           </h2>
           La Encuesta de Hábitos e Independencia en la Rutina Diaria
           <FaRegCopyright
-            style={{ fontSize: 10, marginLeft: 5, marginBottom: 5 }}
+            style={{ fontSize: 10, marginLeft: 5, marginRight: 5, marginBottom: 5 }}
           />
           se aplica con niños entre los 4 y 8 años y está diseñada para
           identificar tres aspectos:
